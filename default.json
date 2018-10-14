@@ -1,0 +1,6 @@
+[
+  "it.sevenbits.handlers.Semicolon",
+  "it.sevenbits.handlers.OpenBrace",
+  "it.sevenbits.handlers.CloseBrace",
+  "it.sevenbits.handlers.AnySymbol"
+]
