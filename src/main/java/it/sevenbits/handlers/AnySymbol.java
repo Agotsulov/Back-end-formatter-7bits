@@ -1,20 +1,10 @@
 package it.sevenbits.handlers;
 
-import it.sevenbits.core.Handler;
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.formatters.DefaultFormatSettings;
 import org.apache.commons.lang3.StringUtils;
 
-
-public class AnySymbol implements Handler {
+public class AnySymbol extends DefaultHandler {
 
     private char symbol;
-    private DefaultFormatSettings format;
-
-    @Override
-    public void start(FormatSettings format) {
-        this.format = (DefaultFormatSettings) format;
-    }
 
     @Override
     public boolean validate(char symbol) {

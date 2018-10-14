@@ -1,18 +1,8 @@
 package it.sevenbits.handlers;
 
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.core.Handler;
-import it.sevenbits.formatters.DefaultFormatSettings;
 import org.apache.commons.lang3.StringUtils;
 
-public class CloseBrace implements Handler {
-
-    private DefaultFormatSettings format;
-
-    @Override
-    public void start(FormatSettings format) {
-        this.format = (DefaultFormatSettings) format;
-    }
+public class CloseBrace extends DefaultHandler {
 
     @Override
     public boolean validate(char symbol) {

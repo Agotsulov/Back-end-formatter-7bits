@@ -1,18 +1,8 @@
 package it.sevenbits.handlers;
 
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.core.Handler;
-import it.sevenbits.formatters.DefaultFormatSettings;
 import org.apache.commons.lang3.StringUtils;
 
-public class Semicolon implements Handler {
-
-    DefaultFormatSettings format;
-
-    @Override
-    public void start(FormatSettings format) {
-        this.format = (DefaultFormatSettings) format;
-    }
+public class Semicolon extends DefaultHandler {
 
     @Override
     public boolean validate(char symbol) {
@@ -23,9 +13,8 @@ public class Semicolon implements Handler {
     public String handle() {
         String result = "";
 
-        if (format.indent){
+        if (format.indent)
             result += StringUtils.repeat(format.indentString, format.indentLevel - 1);
-        }
 
         format.indent = true;
         format.isNewLine = true;
