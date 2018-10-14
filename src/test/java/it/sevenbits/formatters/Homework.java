@@ -18,7 +18,7 @@ public class Homework {
         try {
             OutStream out = new StringBuilderOutStream(actual);
             Formatter.format(
-                    new StringInStream("aaa {bbbb;ccc;}"),
+                    new StringInStream("aaa { bbbb; ccc;}"),
                     out,
                     new DefaultFormatSettings("default.properties", "default.json"));
         } catch (FormatSettingsException e) {
@@ -32,7 +32,7 @@ public class Homework {
         try {
             OutStream out = new PrintStreamOutStream(System.out);
             Formatter.format(
-                    new StringInStream("aaa {bbbb;ccc;}"),
+                    new StringInStream("aaa { bbbb; ccc;}"),
                     out,
                     new DefaultFormatSettings("default.properties", "default.json"));
             out.close();

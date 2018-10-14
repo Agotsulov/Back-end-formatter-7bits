@@ -8,6 +8,8 @@ public class AnySymbol extends DefaultHandler {
 
     @Override
     public boolean validate(char symbol) {
+        if((format.isNewLine) && (symbol == ' '))
+            return false;
         if((symbol != '\n') && (symbol != '\r')){
             this.symbol = symbol;
             return true;
