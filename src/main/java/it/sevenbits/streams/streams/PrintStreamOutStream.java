@@ -32,6 +32,6 @@ public class PrintStreamOutStream implements OutStream {
 
     public void flush() {
         if (out != null)
-            out.print(outString);
+            out.println(outString);
     }
 }

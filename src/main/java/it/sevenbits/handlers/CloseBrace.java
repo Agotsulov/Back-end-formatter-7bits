@@ -32,10 +32,9 @@ public class CloseBrace implements Handler {
             result += StringUtils.repeat(format.indentString, format.indentLevel);
 
         result += "}";
-        result += "\n";
 
         format.indent = true;
-        format.isNewLine = true;
+        format.isNewLine = false;
 
         return result;
     }

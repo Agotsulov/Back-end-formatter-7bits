@@ -23,7 +23,7 @@ public class Homework {
         } catch (FormatSettingsException e) {
             fail();
         }
-        assertEquals("aaa {\n    bbbb;\n    ccc;\n}\n", actual.toString());
+        assertEquals("aaa {\n    bbbb;\n    ccc;\n}", actual.toString());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class Homework {
                 "    public static void main(String[] args) {\n" +
                 "        System.out.println(\"Hello World!\");\n" +
                 "    }\n" +
-                "}\n", actual.toString());
+                "}", actual.toString());
     }
 
     @Test
