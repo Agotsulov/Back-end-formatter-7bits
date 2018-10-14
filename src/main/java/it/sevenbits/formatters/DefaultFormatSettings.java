@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import it.sevenbits.core.FormatSettings;
 import it.sevenbits.core.Handler;
+import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.exceptions.HandlerException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -92,8 +94,13 @@ public class DefaultFormatSettings implements FormatSettings {
             result.add((Handler) instance);
         }
 
-        for(Handler handler: result)
-            handler.start(this);
+        for(Handler handler: result) {
+            try {
+                handler.start(this);
+            } catch (HandlerException e) {
+                throw new FormatSettingsException();
+            }
+        }
 
         return result;
     }

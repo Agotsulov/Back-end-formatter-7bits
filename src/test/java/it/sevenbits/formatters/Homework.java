@@ -1,6 +1,7 @@
 package it.sevenbits.formatters;
 
 import it.sevenbits.core.Formatter;
+import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.streams.OutStream;
 import it.sevenbits.streams.streams.PrintStreamOutStream;
 import it.sevenbits.streams.string.StringInStream;
