@@ -21,8 +21,10 @@ import java.util.Properties;
 
 public class DefaultFormatSettings implements FormatSettings {
 
-    private static final char INDENT_CHAR_DEFAULT = ' ';
-    private static final int INDENT_LENGTH_DEFAULT = 4;
+    /*
+        Что то этот класс слишком обьемным получился.
+        TODO: Придумать как уменьшить/разделить класс.
+     */
 
     private char indentChar;
     private int indentLength;
