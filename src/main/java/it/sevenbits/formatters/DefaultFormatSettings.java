@@ -7,7 +7,7 @@ import it.sevenbits.core.FormatSettings;
 import it.sevenbits.core.Handler;
 import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.exceptions.HandlerException;
-import org.apache.commons.lang3.StringUtils;
+import it.sevenbits.other.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

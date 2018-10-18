@@ -1,6 +1,6 @@
 package it.sevenbits.handlers;
 
-import org.apache.commons.lang3.StringUtils;
+import it.sevenbits.other.StringUtils;
 
 public class AnySymbol extends DefaultHandler {
 

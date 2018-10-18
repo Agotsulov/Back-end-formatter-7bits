@@ -22,7 +22,7 @@ public class Homework {
                     out,
                     new DefaultFormatSettings("default.properties", "default.json"));
         } catch (FormatSettingsException e) {
-            fail();
+            fail("");
         }
         assertEquals("aaa {\n    bbbb;\n    ccc;\n}", actual.toString());
     }
@@ -37,7 +37,7 @@ public class Homework {
                     new DefaultFormatSettings("default.properties", "default.json"));
             out.close();
         } catch (FormatSettingsException e) {
-            fail();
+            fail("");
         }
     }
 
@@ -55,7 +55,7 @@ public class Homework {
                     out,
                     new DefaultFormatSettings("default.properties", "default.json"));
         } catch (FormatSettingsException e) {
-            fail();
+            fail("");
         }
         assertEquals("class HelloWorld {\n" +
                 "    public static void main(String[] args) {\n" +
@@ -78,7 +78,7 @@ public class Homework {
                     new DefaultFormatSettings("default.properties", "default.json"));
             out.close();
         } catch (FormatSettingsException e) {
-            fail();
+            fail("");
         }
     }
 
