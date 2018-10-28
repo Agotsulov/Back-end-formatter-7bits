@@ -6,12 +6,15 @@ import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.other.StringUtils;
 
+/**
+ *
+ */
 public class OpenBrace extends DefaultHandler {
 
     private NewLineFlagContainer flagContainer;
 
     @Override
-    public void start(FormatSettings settings) throws HandlerException {
+    public void start(final FormatSettings settings) throws HandlerException {
         super.start(settings);
         try {
             flagContainer = (NewLineFlagContainer) settings.getContainers().get("NewLineFlagContainer");
@@ -21,7 +24,7 @@ public class OpenBrace extends DefaultHandler {
     }
 
     @Override
-    public boolean validate(char symbol) {
+    public boolean validate(final char symbol) {
         return (symbol == '{');
     }
 
@@ -29,22 +32,22 @@ public class OpenBrace extends DefaultHandler {
     public String handle() {
         String result = "";
 
-        if(flagContainer.needNewLine) {
+        if (flagContainer.isNeedNewLine()) {
             result += "\n";
         }
 
-        if (format.indent) {
-            result += StringUtils.repeat(format.indentString, format.indentLevel);
+        if (getFormat().isIndent()) {
+            result += StringUtils.repeat(getFormat().getIndentString(), getFormat().getIndentLevel());
         }
 
         result += "{";
 
-        format.indent = true;
-        format.isNewLine = true;
+        getFormat().setIndent(true);
+        getFormat().setNewLine(true);
 
-        flagContainer.needNewLine = true;
+        flagContainer.setNeedNewLine(true);
 
-        format.indentLevel = format.indentLevel + 1;
+        getFormat().setIndentLevel(getFormat().getIndentLevel() + 1);
 
         return result;
     }

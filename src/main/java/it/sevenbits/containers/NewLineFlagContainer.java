@@ -2,17 +2,22 @@ package it.sevenbits.containers;
 
 import it.sevenbits.exceptions.ContainerException;
 
+/**
+ *
+ */
 public class NewLineFlagContainer extends AContainer {
 
-    public boolean needNewLine = false;
+    //Это пример что работает несколько
+
+    private boolean needNewLine = false;
 
     @Override
-    public String get(String key) throws ContainerException {
+    public String get(final String key) throws ContainerException {
         return null;
     }
 
     @Override
-    public void set(String key, String value) throws ContainerException {
+    public void set(final String key, final String value) throws ContainerException {
 
     }
 
@@ -22,7 +27,15 @@ public class NewLineFlagContainer extends AContainer {
     }
 
     @Override
-    public void load(String file) throws ContainerException {
+    public void load(final String file) throws ContainerException {
 
+    }
+
+    public boolean isNeedNewLine() {
+        return needNewLine;
+    }
+
+    public void setNeedNewLine(final boolean needNewLine) {
+        this.needNewLine = needNewLine;
     }
 }

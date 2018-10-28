@@ -4,7 +4,7 @@ import it.sevenbits.core.Formatter;
 import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.streams.IWriter;
 import it.sevenbits.streams.streams.PrintStreamWriter;
-import it.sevenbits.streams.stringbuilder.StringBuilderWriter;
+import it.sevenbits.streams.string.StringBuilderWriter;
 import it.sevenbits.streams.string.StringReader;
 import org.junit.jupiter.api.Test;
 

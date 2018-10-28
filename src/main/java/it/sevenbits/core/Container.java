@@ -2,6 +2,9 @@ package it.sevenbits.core;
 
 import it.sevenbits.exceptions.ContainerException;
 
+/**
+ *
+ */
 public interface Container {
 
     String get(String key) throws ContainerException;

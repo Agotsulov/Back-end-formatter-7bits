@@ -1,5 +1,8 @@
 package it.sevenbits.streams;
 
+/**
+ *
+ */
 public interface IWriter {
     //TODO: write OutStreamException
 

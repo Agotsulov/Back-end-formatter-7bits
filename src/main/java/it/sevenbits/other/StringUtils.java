@@ -1,21 +1,30 @@
 package it.sevenbits.other;
 
-public class StringUtils {
+/**
+ *
+ */
+public final class StringUtils {
 
-    public static String repeat(String s, int count){
+    private StringUtils() {
+
+    }
+
+    public static String repeat(final String s, final int count) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0;i < count;i++)
+        for (int i = 0; i < count; i++) {
             sb.append(s);
+        }
 
         return sb.toString();
     }
 
-    public static String repeat(char c, int count){
+    public static String repeat(final char c, final int count) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0;i < count;i++)
+        for (int i = 0; i < count; i++) {
             sb.append(c);
+        }
 
         return sb.toString();
     }

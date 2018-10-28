@@ -7,23 +7,28 @@ import it.sevenbits.core.Container;
 import it.sevenbits.core.FormatSettings;
 import it.sevenbits.core.Handler;
 import it.sevenbits.exceptions.FormatSettingsException;
-import it.sevenbits.exceptions.HandlerException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ *
+ */
 public class DefaultFormatSettings implements FormatSettings {
 
-    private class ThreeString{
+    private class ThreeString {
         private String name;
         private String path;
         private String file;
 
-        public ThreeString(String name, String path, String file) {
+        ThreeString(final String name, final String path, final String file) {
             this.name = name;
             this.path = path;
             this.file = file;
@@ -33,7 +38,7 @@ public class DefaultFormatSettings implements FormatSettings {
             return name;
         }
 
-        public void setName(String name) {
+        public void setName(final String name) {
             this.name = name;
         }
 
@@ -41,7 +46,7 @@ public class DefaultFormatSettings implements FormatSettings {
             return path;
         }
 
-        public void setPath(String path) {
+        public void setPath(final String path) {
             this.path = path;
         }
 
@@ -49,7 +54,7 @@ public class DefaultFormatSettings implements FormatSettings {
             return file;
         }
 
-        public void setFile(String file) {
+        public void setFile(final String file) {
             this.file = file;
         }
     }
@@ -60,31 +65,31 @@ public class DefaultFormatSettings implements FormatSettings {
     private String containersFile;
     private String handlersFile;
 
-    public DefaultFormatSettings(String containersFile, String handlersFile){
+    DefaultFormatSettings(final String containersFile, final String handlersFile) {
         this.containersFile = containersFile;
         this.handlersFile = handlersFile;
     }
 
-    private Map<String, Container> loadContainers(String containersFile) throws FormatSettingsException {
+    private Map<String, Container> loadContainers(final String cFile) throws FormatSettingsException {
         Map<String, Container> result = new HashMap<>();
 
         Gson json = new Gson();
         JsonReader jReader = null;
 
         try {
-            jReader = new JsonReader(new FileReader(new File(containersFile)));
+            jReader = new JsonReader(new FileReader(new File(cFile)));
         } catch (FileNotFoundException e) {
             throw new FormatSettingsException();
         }
 
-        List<ThreeString> data = json.fromJson(jReader,new TypeToken<List<ThreeString>>(){}.getType());
+        List<ThreeString> data = json.fromJson(jReader, new TypeToken<List<ThreeString>>() { } .getType());
 
         for (ThreeString d : data) {
             Class<?> c = null;
             try {
                 c = Class.forName(d.path);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new FormatSettingsException();
             }
 
             Constructor<?> constructor = null;
@@ -111,22 +116,22 @@ public class DefaultFormatSettings implements FormatSettings {
         return result;
     }
 
-    private Map<Handler, Boolean> loadHandlers(String handlersFile) throws FormatSettingsException {
+    private Map<Handler, Boolean> loadHandlers(final String hFile) throws FormatSettingsException {
         Map<Handler, Boolean> result = new LinkedHashMap<>(); //Надо сохранять порядок
         Gson json = new Gson();
         JsonReader jReader = null;
         try {
-            jReader = new JsonReader(new FileReader(new File(handlersFile)));
+            jReader = new JsonReader(new FileReader(new File(hFile)));
         } catch (FileNotFoundException e) {
             throw new FormatSettingsException();
         }
-        Map<String, Boolean> handlers = json.fromJson(jReader,new TypeToken<Map<String, Boolean>>(){}.getType());
+        Map<String, Boolean> handlers = json.fromJson(jReader, new TypeToken<Map<String, Boolean>>() { } .getType());
         for (String handler : handlers.keySet()) {
             Class<?> c = null;
             try {
                 c = Class.forName(handler);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new FormatSettingsException();
             }
 
             Constructor<?> constructor = null;
@@ -154,14 +159,16 @@ public class DefaultFormatSettings implements FormatSettings {
     }
 
     public Map<Handler, Boolean> getHandlers() throws FormatSettingsException {
-        if (handlers == null)
+        if (handlers == null) {
             handlers = loadHandlers(getHandlersFile());
+        }
         return handlers;
     }
 
     public Map<String, Container> getContainers() throws FormatSettingsException {
-        if (containers == null)
+        if (containers == null) {
             containers = loadContainers(getContainersFile());
+        }
         return containers;
     }
 
@@ -169,7 +176,7 @@ public class DefaultFormatSettings implements FormatSettings {
         return containersFile;
     }
 
-    public void setContainersFile(String containersFile) {
+    public void setContainersFile(final String containersFile) {
         this.containersFile = containersFile;
     }
 
@@ -177,7 +184,7 @@ public class DefaultFormatSettings implements FormatSettings {
         return handlersFile;
     }
 
-    public void setHandlersFile(String handlersFile) {
+    public void setHandlersFile(final String handlersFile) {
         this.handlersFile = handlersFile;
     }
 }

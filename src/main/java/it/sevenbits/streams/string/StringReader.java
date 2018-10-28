@@ -2,6 +2,9 @@ package it.sevenbits.streams.string;
 
 import it.sevenbits.streams.IReader;
 
+/**
+ *
+ */
 public class StringReader implements IReader {
 
     private String currentString;
@@ -11,13 +14,13 @@ public class StringReader implements IReader {
     private int numberSymbol = 0;
     private int length;
 
-    public StringReader(String s){
+    public StringReader(final String s) {
         this.currentString = s;
         length = currentString.length();
     }
 
     public Character next() {
-        if(hasNext()){
+        if (hasNext()) {
             currentSymbol = currentString.charAt(numberSymbol);
             numberSymbol++;
         }

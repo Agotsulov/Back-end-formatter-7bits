@@ -2,6 +2,10 @@ package it.sevenbits.containers;
 
 import it.sevenbits.core.Container;
 
+
+/**
+ *
+ */
 public abstract class AContainer implements Container {
 
     private String file;
@@ -10,7 +14,7 @@ public abstract class AContainer implements Container {
         return file;
     }
 
-    public void setFile(String file) {
+    public void setFile(final String file) {
         this.file = file;
     }
 }

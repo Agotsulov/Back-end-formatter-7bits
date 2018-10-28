@@ -9,6 +9,9 @@ import it.sevenbits.streams.IWriter;
 
 import java.util.Map;
 
+/**
+ *
+ */
 public class Formatter {
 
     /*
@@ -20,7 +23,7 @@ public class Formatter {
 
     private FormatSettings settings;
 
-    public Formatter(IReader in, IWriter out, FormatSettings settings) {
+    public Formatter(final IReader in, final IWriter out, final FormatSettings settings) {
         this.in = in;
         this.out = out;
         this.settings = settings;
@@ -36,8 +39,9 @@ public class Formatter {
             throw new FormatterException();
         }
 
-        if ((handlers == null) || (containers == null))
+        if ((handlers == null) || (containers == null)) {
             throw new FormatterException();
+        }
 
         for (Handler handler: handlers.keySet()) {
             try {
@@ -47,7 +51,7 @@ public class Formatter {
             }
         }
 
-        for (Container container: containers.values()){
+        for (Container container: containers.values()) {
             try {
                 container.load();
             } catch (ContainerException e) {
@@ -57,20 +61,22 @@ public class Formatter {
 
         while (in.hasNext()) {
             char symbol = in.next();
-            for (Handler h: handlers.keySet())
-                if(h.validate(symbol)) {
+            for (Handler h: handlers.keySet()) {
+                if (h.validate(symbol)) {
                     try {
                         out.write(h.handle());
                     } catch (HandlerException e) {
                         e.printStackTrace();
                     }
-                    if(handlers.get(h))
+                    if (handlers.get(h)) {
                         break;
+                    }
                 }
+            }
         }
     }
 
-    public static void format(IReader in, IWriter out, FormatSettings settings) throws FormatterException {
+    public static void format(final IReader in, final IWriter out, final FormatSettings settings) throws FormatterException {
         new Formatter(in, out, settings).format();
     }
     
@@ -78,7 +84,7 @@ public class Formatter {
         return in;
     }
 
-    public void setIn(IReader in) {
+    public void setIn(final IReader in) {
         this.in = in;
     }
 
@@ -86,7 +92,7 @@ public class Formatter {
         return out;
     }
 
-    public void setOut(IWriter out) {
+    public void setOut(final IWriter out) {
         this.out = out;
     }
 
@@ -94,7 +100,7 @@ public class Formatter {
         return settings;
     }
 
-    public void setSettings(FormatSettings settings) {
+    public void setSettings(final FormatSettings settings) {
         this.settings = settings;
     }
 

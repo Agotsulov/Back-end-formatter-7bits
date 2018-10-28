@@ -6,12 +6,15 @@ import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.other.StringUtils;
 
+/**
+ *
+ */
 public class AnySymbol extends DefaultHandler {
 
     private NewLineFlagContainer flagContainer;
 
     @Override
-    public void start(FormatSettings settings) throws HandlerException {
+    public void start(final FormatSettings settings) throws HandlerException {
         super.start(settings);
         try {
             flagContainer = (NewLineFlagContainer) settings.getContainers().get("NewLineFlagContainer");
@@ -21,15 +24,16 @@ public class AnySymbol extends DefaultHandler {
     }
 
 
-    private char symbol;
+    private char aChar; //Из-за checkstyle переименовывать
 
 
     @Override
-    public boolean validate(char symbol) {
-        if(((format.isNewLine) || (flagContainer.needNewLine)) && (symbol == ' '))
+    public boolean validate(final char symbol) {
+        if (((getFormat().isNewLine()) || (flagContainer.isNeedNewLine())) && (symbol == ' ')) {
             return false;
-        if((symbol != '\n') && (symbol != '\r')){
-            this.symbol = symbol;
+        }
+        if ((symbol != '\n') && (symbol != '\r')) {
+            this.aChar = symbol;
             return true;
         }
         return false;
@@ -39,17 +43,20 @@ public class AnySymbol extends DefaultHandler {
     public String handle() {
         String result = "";
 
-        if(flagContainer.needNewLine)
+        if (flagContainer.isNeedNewLine()) {
             result += "\n";
+        }
 
-        if (format.indent)
-            result += StringUtils.repeat(format.indentString, format.indentLevel);
+        if (getFormat().isIndent()) {
+            result += StringUtils.repeat(getFormat().getIndentString(), getFormat().getIndentLevel());
+        }
 
-        format.indent = false;
-        format.isNewLine = false;
-        flagContainer.needNewLine = false;
+        getFormat().setIndent(false);
+        getFormat().setNewLine(false);
 
-        return result + symbol;
+        flagContainer.setNeedNewLine(false);
+
+        return result + aChar;
     }
 
 }
