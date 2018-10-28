@@ -11,29 +11,31 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class Homework1 {
+public class Homework2 {
 
     @Test
-    void first(){
+    void overdoneLogic(){
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
             Formatter.format(
-                    new StringReader("aaa { bbbb; ccc;}"),
+                    new StringReader("{{{{}}}}"),
                     out,
                     new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
         } catch (FormatterException e) {
             fail("");
         }
-        assertEquals("aaa {\n    bbbb;\n    ccc;\n}", actual.toString());
+        assertEquals(
+                "{\n" +
+                "    {\n        {\n            {\n            }\n        }\n    }\n}", actual.toString());
     }
 
     @Test
-    void firstInConsole(){
+    void overdoneLogicConsole(){
         try {
             IWriter out = new PrintStreamWriter(System.out);
             Formatter.format(
-                    new StringReader("aaa { bbbb; ccc;}"),
+                    new StringReader("{{{{}}}}"),
                     out,
                     new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
             out.close();
@@ -43,7 +45,7 @@ public class Homework1 {
     }
 
     @Test
-    void firstHelloWorld(){
+    void testOne() {
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
@@ -66,20 +68,42 @@ public class Homework1 {
     }
 
     @Test
-    void firstHelloWorldConsole(){
+    void testTwo() {
+        StringBuilder actual = new StringBuilder();
         try {
-            IWriter out = new PrintStreamWriter(System.out);
+            IWriter out = new StringBuilderWriter(actual);
             Formatter.format(
-                    new StringReader("class HelloWorld {" +
-                            "public static void main(String[] args) {" +
-                            "System.out.println(\"Hello World!\");" +
-                            "}" +
-                            "}"),
+                    new StringReader("    Такие       пробелы                    тоже надо       удалять;"
+                            + "Это;" + "cлишко;" + "{сложна;}" + "    тут придеться запоминать слова..."),
                     out,
                     new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
-            out.close();
-        } catch (FormatterException  e) {
+        } catch (FormatterException e) {
             fail("");
         }
+        assertEquals("Такие       пробелы                    тоже надо       удалять;\n" +
+                "Это;\n" +
+                "cлишко;\n" +
+                "{\n" +
+                "    сложна;\n" +
+                "}\n" +
+                "тут придеться запоминать слова...", actual.toString());
+    }
+
+    @Test
+    void testThree() {
+        StringBuilder actual = new StringBuilder();
+        try {
+            IWriter out = new StringBuilderWriter(actual);
+            Formatter.format(
+                    new StringReader("\n\n\n\n\n\n\n     \n         \n \n\n         \n adada; \n\n\n \n\na; aa = 5; \n\n\n\n\n\n"),
+                    out,
+                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
+        } catch (FormatterException e) {
+            fail("");
+        }
+        assertEquals("adada;\n" +
+                "a;\n" +
+                "aa = 5;", actual.toString());
     }
 }
+

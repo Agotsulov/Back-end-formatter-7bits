@@ -1,8 +1,24 @@
 package it.sevenbits.handlers;
 
+import it.sevenbits.containers.NewLineFlagContainer;
+import it.sevenbits.core.FormatSettings;
+import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.other.StringUtils;
 
 public class Semicolon extends DefaultHandler {
+
+    private NewLineFlagContainer flagContainer;
+
+    @Override
+    public void start(FormatSettings settings) throws HandlerException {
+        super.start(settings);
+        try {
+            flagContainer = (NewLineFlagContainer) settings.getContainers().get("NewLineFlagContainer");
+        } catch (FormatSettingsException e) {
+            throw new HandlerException();
+        }
+    }
 
     @Override
     public boolean validate(char symbol) {
@@ -19,6 +35,8 @@ public class Semicolon extends DefaultHandler {
         format.indent = true;
         format.isNewLine = true;
 
-        return result + ";\n";
+        flagContainer.needNewLine = true;
+
+        return result + ";";
     }
 }

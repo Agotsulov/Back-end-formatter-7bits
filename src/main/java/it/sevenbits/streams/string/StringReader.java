@@ -1,10 +1,8 @@
 package it.sevenbits.streams.string;
 
-import it.sevenbits.streams.InStream;
+import it.sevenbits.streams.IReader;
 
-import java.io.IOException;
-
-public class StringInStream  implements InStream {
+public class StringReader implements IReader {
 
     private String currentString;
 
@@ -13,7 +11,7 @@ public class StringInStream  implements InStream {
     private int numberSymbol = 0;
     private int length;
 
-    public StringInStream(String s){
+    public StringReader(String s){
         this.currentString = s;
         length = currentString.length();
     }

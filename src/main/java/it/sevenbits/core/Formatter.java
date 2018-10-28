@@ -4,8 +4,8 @@ import it.sevenbits.exceptions.ContainerException;
 import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.exceptions.HandlerException;
-import it.sevenbits.streams.InStream;
-import it.sevenbits.streams.OutStream;
+import it.sevenbits.streams.IReader;
+import it.sevenbits.streams.IWriter;
 
 import java.util.Map;
 
@@ -15,12 +15,12 @@ public class Formatter {
         TODO: Разобраться с Exceptions
      */
 
-    private InStream in;
-    private OutStream out;
+    private IReader in;
+    private IWriter out;
 
     private FormatSettings settings;
 
-    public Formatter(InStream in, OutStream out, FormatSettings settings) {
+    public Formatter(IReader in, IWriter out, FormatSettings settings) {
         this.in = in;
         this.out = out;
         this.settings = settings;
@@ -70,23 +70,23 @@ public class Formatter {
         }
     }
 
-    public static void format(InStream in, OutStream out, FormatSettings settings) throws FormatterException {
+    public static void format(IReader in, IWriter out, FormatSettings settings) throws FormatterException {
         new Formatter(in, out, settings).format();
     }
     
-    public InStream getIn() {
+    public IReader getIn() {
         return in;
     }
 
-    public void setIn(InStream in) {
+    public void setIn(IReader in) {
         this.in = in;
     }
 
-    public OutStream getOut() {
+    public IWriter getOut() {
         return out;
     }
 
-    public void setOut(OutStream out) {
+    public void setOut(IWriter out) {
         this.out = out;
     }
 

@@ -1,8 +1,24 @@
 package it.sevenbits.handlers;
 
+import it.sevenbits.containers.NewLineFlagContainer;
+import it.sevenbits.core.FormatSettings;
+import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.other.StringUtils;
 
 public class CloseBrace extends DefaultHandler {
+
+    private NewLineFlagContainer flagContainer;
+
+    @Override
+    public void start(FormatSettings settings) throws HandlerException {
+        super.start(settings);
+        try {
+            flagContainer = (NewLineFlagContainer) settings.getContainers().get("NewLineFlagContainer");
+        } catch (FormatSettingsException e) {
+            throw new HandlerException();
+        }
+    }
 
     @Override
     public boolean validate(char symbol) {
@@ -13,8 +29,9 @@ public class CloseBrace extends DefaultHandler {
     public String handle() {
         String result = "";
 
-        if(!format.isNewLine)
+        if(flagContainer.needNewLine) {
             result += "\n";
+        }
 
         format.indentLevel = format.indentLevel - 1;
 
@@ -25,6 +42,9 @@ public class CloseBrace extends DefaultHandler {
 
         format.indent = true;
         format.isNewLine = false;
+
+        flagContainer.needNewLine = true;
+
 
         return result;
     }

@@ -1,6 +1,6 @@
 package it.sevenbits.streams;
 
-public interface OutStream {
+public interface IWriter {
     //TODO: write OutStreamException
 
     void write(char c);

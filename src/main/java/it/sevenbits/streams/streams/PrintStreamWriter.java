@@ -1,16 +1,16 @@
 package it.sevenbits.streams.streams;
 
-import it.sevenbits.streams.OutStream;
+import it.sevenbits.streams.IWriter;
 
 import java.io.PrintStream;
 
-public class PrintStreamOutStream implements OutStream {
+public class PrintStreamWriter implements IWriter {
 
     private String outString = null;
 
     private PrintStream out;
 
-    public PrintStreamOutStream(PrintStream out){
+    public PrintStreamWriter(PrintStream out){
         this.out = out;
         outString = "";
     }
