@@ -4,7 +4,7 @@ import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.streams.InStream;
 import it.sevenbits.streams.OutStream;
 
-import java.util.List;
+import java.util.Map;
 
 public class Formatter {
 
@@ -25,17 +25,18 @@ public class Formatter {
     }
 
     public void format(){
-        List<Handler> handlers = settings.getHandlers();
+        Map<Handler, Boolean> handlers = settings.getHandlers();
         while (in.hasNext()) {
             char symbol = in.next();
-            for (Handler h: handlers)
+            for (Handler h: handlers.keySet())
                 if(h.validate(symbol)) {
                     try {
                         out.write(h.handle());
                     } catch (HandlerException e) {
                         e.printStackTrace();
                     }
-                    break; //Можно ли он его тут избавиться?
+                    if(handlers.get(h))
+                        break;
                 }
         }
     }
@@ -65,17 +66,18 @@ public class Formatter {
     }
 
     public static void format(InStream in, OutStream out, FormatSettings settings){
-        List<Handler> handlers = settings.getHandlers();
+        Map<Handler, Boolean> handlers = settings.getHandlers();
         while (in.hasNext()) {
             char symbol = in.next();
-            for (Handler h: handlers)
+            for (Handler h: handlers.keySet())
                 if(h.validate(symbol)) {
                     try {
                         out.write(h.handle());
                     } catch (HandlerException e) {
                         e.printStackTrace();
                     }
-                    break; //Можно ли он его тут избавиться?
+                    if(handlers.get(h))
+                        break;
                 }
         }
     }

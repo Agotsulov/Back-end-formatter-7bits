@@ -15,9 +15,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class DefaultFormatSettings implements FormatSettings {
 
@@ -36,7 +34,7 @@ public class DefaultFormatSettings implements FormatSettings {
 
     public String indentString = "";
 
-    private List<Handler> handlers = null;
+    private Map<Handler, Boolean> handlers = null;
 
     public DefaultFormatSettings(String propertiesFile, String handlersFile) throws FormatSettingsException {
         loadProperties(propertiesFile);
@@ -60,8 +58,8 @@ public class DefaultFormatSettings implements FormatSettings {
         indentString = StringUtils.repeat(indentChar, indentLength);
     }
 
-    private List<Handler> loadHandlers(String handlersFile) throws FormatSettingsException {
-        List<Handler> result = new ArrayList<>();
+    private Map<Handler, Boolean> loadHandlers(String handlersFile) throws FormatSettingsException {
+        Map<Handler, Boolean> result = new LinkedHashMap<>(); //Надо сохранять порядок
         Gson json = new Gson();
         JsonReader jReader = null;
         try {
@@ -69,8 +67,8 @@ public class DefaultFormatSettings implements FormatSettings {
         } catch (FileNotFoundException e) {
             throw new FormatSettingsException();
         }
-        List<String> handlers = json.fromJson(jReader,new TypeToken<List<String>>(){}.getType());
-        for (String handler : handlers) {
+        Map<String, Boolean> handlers = json.fromJson(jReader,new TypeToken<Map<String, Boolean>>(){}.getType());
+        for (String handler : handlers.keySet()) {
             Class<?> c = null;
             try {
                 c = Class.forName(handler);
@@ -93,10 +91,10 @@ public class DefaultFormatSettings implements FormatSettings {
                 throw new FormatSettingsException();
             }
 
-            result.add((Handler) instance);
+            result.put((Handler) instance, handlers.get(handler));
         }
 
-        for(Handler handler: result) {
+        for(Handler handler: result.keySet()) {
             try {
                 handler.start(this);
             } catch (HandlerException e) {
@@ -135,7 +133,7 @@ public class DefaultFormatSettings implements FormatSettings {
         return indentString;
     }
 
-    public List<Handler> getHandlers() {
+    public Map<Handler, Boolean> getHandlers() {
         return handlers;
     }
 }

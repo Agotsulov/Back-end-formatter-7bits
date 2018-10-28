@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version> <!-- Не работает с 5.0.0-M1 версией тестов не видит -->
+            <version>5.0.0</version> <!-- Не работает с 5.0.0-M1 версией тестов не видит -->
             <scope>test</scope>
         </dependency>
     </dependencies>

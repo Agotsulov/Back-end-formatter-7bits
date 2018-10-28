@@ -1,6 +1,7 @@
 package it.sevenbits.core;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FormatSettings  {
 
@@ -11,6 +12,6 @@ public interface FormatSettings  {
         Суть такая ,но решение надо получше потом придумаю.
      */
 
-    List<Handler> getHandlers();
+    Map<Handler, Boolean> getHandlers();
 
 }
