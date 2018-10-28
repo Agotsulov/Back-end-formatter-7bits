@@ -1,12 +1,22 @@
 package it.sevenbits.formatters;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import it.sevenbits.core.Formatter;
-import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.streams.OutStream;
 import it.sevenbits.streams.streams.PrintStreamOutStream;
 import it.sevenbits.streams.string.StringInStream;
 import it.sevenbits.streams.string.StringBuilderOutStream;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +30,8 @@ public class Homework1 {
             Formatter.format(
                     new StringInStream("aaa { bbbb; ccc;}"),
                     out,
-                    new DefaultFormatSettings("default.properties", "default.json"));
-        } catch (FormatSettingsException e) {
+                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
+        } catch (FormatterException e) {
             fail("");
         }
         assertEquals("aaa {\n    bbbb;\n    ccc;\n}", actual.toString());
@@ -34,9 +44,9 @@ public class Homework1 {
             Formatter.format(
                     new StringInStream("aaa { bbbb; ccc;}"),
                     out,
-                    new DefaultFormatSettings("default.properties", "default.json"));
+                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
             out.close();
-        } catch (FormatSettingsException e) {
+        } catch (FormatterException e) {
             fail("");
         }
     }
@@ -53,8 +63,8 @@ public class Homework1 {
                             "}" +
                             "}"),
                     out,
-                    new DefaultFormatSettings("default.properties", "default.json"));
-        } catch (FormatSettingsException e) {
+                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
+        } catch (FormatterException e) {
             fail("");
         }
         assertEquals("class HelloWorld {\n" +
@@ -75,11 +85,10 @@ public class Homework1 {
                             "}" +
                             "}"),
                     out,
-                    new DefaultFormatSettings("default.properties", "default.json"));
+                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
             out.close();
-        } catch (FormatSettingsException e) {
+        } catch (FormatterException  e) {
             fail("");
         }
     }
-
 }

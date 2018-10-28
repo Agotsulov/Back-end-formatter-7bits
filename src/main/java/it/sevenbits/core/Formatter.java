@@ -1,5 +1,8 @@
 package it.sevenbits.core;
 
+import it.sevenbits.exceptions.ContainerException;
+import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.exceptions.HandlerException;
 import it.sevenbits.streams.InStream;
 import it.sevenbits.streams.OutStream;
@@ -12,7 +15,6 @@ public class Formatter {
         TODO: Разобраться с Exceptions
      */
 
-
     private InStream in;
     private OutStream out;
 
@@ -24,8 +26,35 @@ public class Formatter {
         this.settings = settings;
     }
 
-    public void format(){
-        Map<Handler, Boolean> handlers = settings.getHandlers();
+    public void format() throws FormatterException {
+        Map<Handler, Boolean> handlers = null;
+        Map<String, Container> containers = null;
+        try {
+            handlers = settings.getHandlers();
+            containers = settings.getContainers();
+        } catch (FormatSettingsException e) {
+            throw new FormatterException();
+        }
+
+        if ((handlers == null) || (containers == null))
+            throw new FormatterException();
+
+        for (Handler handler: handlers.keySet()) {
+            try {
+                handler.start(settings);
+            } catch (HandlerException e) {
+                throw new FormatterException();
+            }
+        }
+
+        for (Container container: containers.values()){
+            try {
+                container.load();
+            } catch (ContainerException e) {
+                throw new FormatterException();
+            }
+        }
+
         while (in.hasNext()) {
             char symbol = in.next();
             for (Handler h: handlers.keySet())
@@ -39,6 +68,10 @@ public class Formatter {
                         break;
                 }
         }
+    }
+
+    public static void format(InStream in, OutStream out, FormatSettings settings) throws FormatterException {
+        new Formatter(in, out, settings).format();
     }
     
     public InStream getIn() {
@@ -65,21 +98,6 @@ public class Formatter {
         this.settings = settings;
     }
 
-    public static void format(InStream in, OutStream out, FormatSettings settings){
-        Map<Handler, Boolean> handlers = settings.getHandlers();
-        while (in.hasNext()) {
-            char symbol = in.next();
-            for (Handler h: handlers.keySet())
-                if(h.validate(symbol)) {
-                    try {
-                        out.write(h.handle());
-                    } catch (HandlerException e) {
-                        e.printStackTrace();
-                    }
-                    if(handlers.get(h))
-                        break;
-                }
-        }
-    }
+
 
 }
