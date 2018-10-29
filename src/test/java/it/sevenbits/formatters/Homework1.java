@@ -2,6 +2,7 @@ package it.sevenbits.formatters;
 
 import it.sevenbits.core.Formatter;
 import it.sevenbits.exceptions.FormatterException;
+import it.sevenbits.exceptions.WriterException;
 import it.sevenbits.streams.IWriter;
 import it.sevenbits.streams.streams.PrintStreamWriter;
 import it.sevenbits.streams.string.StringBuilderWriter;
@@ -37,7 +38,7 @@ public class Homework1 {
                     out,
                     new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
             out.close();
-        } catch (FormatterException e) {
+        } catch (FormatterException | WriterException e) {
             fail("");
         }
     }
@@ -78,7 +79,7 @@ public class Homework1 {
                     out,
                     new DefaultFormatSettings("settings/containers.json", "settings/handles.json"));
             out.close();
-        } catch (FormatterException  e) {
+        } catch (FormatterException | WriterException e) {
             fail("");
         }
     }

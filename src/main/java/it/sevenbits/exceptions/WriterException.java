@@ -3,6 +3,6 @@ package it.sevenbits.exceptions;
 /**
  *
  */
-public class HandlerException extends Exception {
+public class WriterException extends Exception {
     //заглушка TODO: Написать тут что нибудь
 }

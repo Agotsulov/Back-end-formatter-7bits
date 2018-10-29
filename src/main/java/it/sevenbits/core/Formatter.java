@@ -1,9 +1,11 @@
 package it.sevenbits.core;
 
 import it.sevenbits.exceptions.ContainerException;
+import it.sevenbits.exceptions.ReaderException;
 import it.sevenbits.exceptions.FormatSettingsException;
 import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.exceptions.HandlerException;
+import it.sevenbits.exceptions.WriterException;
 import it.sevenbits.streams.IReader;
 import it.sevenbits.streams.IWriter;
 
@@ -59,20 +61,24 @@ public class Formatter {
             }
         }
 
-        while (in.hasNext()) {
-            char symbol = in.next();
-            for (Handler h: handlers.keySet()) {
-                if (h.validate(symbol)) {
-                    try {
-                        out.write(h.handle());
-                    } catch (HandlerException e) {
-                        e.printStackTrace();
-                    }
-                    if (handlers.get(h)) {
-                        break;
+        try {
+            while (in.hasNext()) {
+                char symbol = in.next();
+                for (Handler h : handlers.keySet()) {
+                    if (h.validate(symbol)) {
+                        try {
+                            out.write(h.handle());
+                        } catch (HandlerException | WriterException e) {
+                            throw new FormatterException();
+                        }
+                        if (handlers.get(h)) {
+                            break;
+                        }
                     }
                 }
             }
+        } catch (ReaderException e) {
+            throw new FormatterException();
         }
     }
 
