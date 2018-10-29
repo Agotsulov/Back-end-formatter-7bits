@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  *
  */
-public class DefaultFormatSettings implements FormatSettings {
+public class SimpleFormatSettings implements FormatSettings {
 
     /**
      * Class helper for loading containers from json
@@ -72,7 +72,7 @@ public class DefaultFormatSettings implements FormatSettings {
      * @param containersFile path to json file
      * @param handlersFile path to json file
      */
-    public DefaultFormatSettings(final String containersFile, final String handlersFile) {
+    public SimpleFormatSettings(final String containersFile, final String handlersFile) {
         this.containersFile = containersFile;
         this.handlersFile = handlersFile;
     }

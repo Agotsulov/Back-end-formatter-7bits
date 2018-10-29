@@ -9,7 +9,7 @@ import it.sevenbits.other.StringUtils;
 /**
  *
  */
-public class OpenBrace extends DefaultHandler {
+public class OpenBrace extends SimpleHandler {
 
     private NewLineFlagContainer flagContainer;
 

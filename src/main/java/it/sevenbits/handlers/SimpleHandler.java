@@ -9,7 +9,7 @@ import it.sevenbits.exceptions.HandlerException;
 /**
  *
  */
-public abstract class DefaultHandler implements Handler {
+public abstract class SimpleHandler implements Handler {
 
     private SimpleContainer format; //А почему нельзя protected? А то не очень удобно
 

@@ -2,7 +2,7 @@ package it.sevenbits.formatters;
 
 import it.sevenbits.exceptions.FormatterException;
 import it.sevenbits.exceptions.WriterException;
-import it.sevenbits.formatsettings.DefaultFormatSettings;
+import it.sevenbits.formatsettings.SimpleFormatSettings;
 import it.sevenbits.streams.IWriter;
 import it.sevenbits.streams.streams.PrintStreamWriter;
 import it.sevenbits.streams.string.StringBuilderWriter;
@@ -22,7 +22,7 @@ public class Homework2 {
             new SimpleFormatter(
                     new StringReader("{{{{}}}}"),
                     out,
-                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json")
+                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
             ).format();
         } catch (FormatterException e) {
             fail("");
@@ -39,7 +39,7 @@ public class Homework2 {
             new SimpleFormatter(
                     new StringReader("{{{{}}}}"),
                     out,
-                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json")
+                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
             ).format();
             out.close();
         } catch (FormatterException | WriterException e) {
@@ -59,7 +59,7 @@ public class Homework2 {
                             "}" +
                             "}"),
                     out,
-                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json")
+                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
             ).format();
         } catch (FormatterException e) {
             fail("");
@@ -80,7 +80,7 @@ public class Homework2 {
                     new StringReader("    Такие       пробелы                    тоже надо       удалять;"
                             + "Это;" + "cлишко;" + "{сложна;}" + "    тут придеться запоминать слова..."),
                     out,
-                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json")
+                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
             ).format();
         } catch (FormatterException e) {
             fail("");
@@ -104,7 +104,7 @@ public class Homework2 {
                             "\n     \n         \n \n\n         " +
                             "\n adada; \n\n\n \n\na; aa = 5; \n\n\n\n\n\n"),
                     out,
-                    new DefaultFormatSettings("settings/containers.json", "settings/handles.json")
+                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
             ).format();
         } catch (FormatterException e) {
             fail("");

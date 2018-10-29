@@ -9,7 +9,7 @@ import it.sevenbits.other.StringUtils;
 /**
  *
  */
-public class AnySymbol extends DefaultHandler {
+public class AnySymbol extends SimpleHandler {
 
     private NewLineFlagContainer flagContainer;
 

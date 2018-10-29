@@ -9,7 +9,7 @@ import it.sevenbits.other.StringUtils;
 /**
  *
  */
-public class Semicolon extends DefaultHandler {
+public class Semicolon extends SimpleHandler {
 
     private NewLineFlagContainer flagContainer;
 
