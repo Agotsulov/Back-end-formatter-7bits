@@ -6,7 +6,6 @@ import it.sevenbits.exceptions.WriterException;
  *
  */
 public interface IWriter {
-    //TODO: write OutStreamException
 
     void write(char c) throws WriterException;
 

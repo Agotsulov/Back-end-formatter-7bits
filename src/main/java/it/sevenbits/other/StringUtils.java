@@ -9,6 +9,12 @@ public final class StringUtils {
 
     }
 
+    /**
+     * Повторяет s строку count раз
+     * @param s строка которую повторить
+     * @param count кол-во раз
+     * @return результат
+     */
     public static String repeat(final String s, final int count) {
         StringBuilder sb = new StringBuilder();
 
@@ -19,6 +25,12 @@ public final class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * Повторяет c символ count раз
+     * @param c символ который повторить
+     * @param count кол-во раз
+     * @return результат
+     */
     public static String repeat(final char c, final int count) {
         StringBuilder sb = new StringBuilder();
 

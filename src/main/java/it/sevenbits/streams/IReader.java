@@ -7,7 +7,6 @@ import it.sevenbits.other.Iterator;
  *
  */
 public interface IReader extends Iterator<Character> {
-    //TODO: write InStreamException
 
     /*
         Вместо read() у меня next()
@@ -18,5 +17,5 @@ public interface IReader extends Iterator<Character> {
     Character next() throws ReaderException;
 
     @Override
-    boolean hasNext() throws ReaderException;
+    boolean hasNext();
 }
