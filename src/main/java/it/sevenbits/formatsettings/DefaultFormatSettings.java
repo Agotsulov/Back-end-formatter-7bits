@@ -1,4 +1,4 @@
-package it.sevenbits.formatters;
+package it.sevenbits.formatsettings;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +23,10 @@ import java.util.Map;
  */
 public class DefaultFormatSettings implements FormatSettings {
 
-    private class ThreeString {
+    /**
+     * Class helper for loading containers from json
+     */
+    private class ThreeString { //TODO: rename
         private String name;
         private String path;
         private String file;
@@ -65,11 +68,20 @@ public class DefaultFormatSettings implements FormatSettings {
     private String containersFile;
     private String handlersFile;
 
-    DefaultFormatSettings(final String containersFile, final String handlersFile) {
+    /**
+     * @param containersFile path to json file
+     * @param handlersFile path to json file
+     */
+    public DefaultFormatSettings(final String containersFile, final String handlersFile) {
         this.containersFile = containersFile;
         this.handlersFile = handlersFile;
     }
 
+    /**
+     * @param cFile path to json file
+     * @return Map key - name value - container
+     * @throws FormatSettingsException Something has gone wrong
+     */
     private Map<String, Container> loadContainers(final String cFile) throws FormatSettingsException {
         Map<String, Container> result = new HashMap<>();
 
@@ -116,6 +128,11 @@ public class DefaultFormatSettings implements FormatSettings {
         return result;
     }
 
+    /**
+     * @param hFile path to json file
+     * @return Map key - handler value - boolean if true it terminal handler
+     * @throws FormatSettingsException Something has gone wrong
+     */
     private Map<Handler, Boolean> loadHandlers(final String hFile) throws FormatSettingsException {
         Map<Handler, Boolean> result = new LinkedHashMap<>(); //Надо сохранять порядок
         Gson json = new Gson();
@@ -158,6 +175,12 @@ public class DefaultFormatSettings implements FormatSettings {
         return result;
     }
 
+
+    //JavaDoc же должно наследоваться и быть не обязательным
+    /**
+     * @return Map key - handler value - boolean if true it terminal handler
+     * @throws FormatSettingsException Something has gone wrong
+     */
     public Map<Handler, Boolean> getHandlers() throws FormatSettingsException {
         if (handlers == null) {
             handlers = loadHandlers(getHandlersFile());
@@ -165,6 +188,10 @@ public class DefaultFormatSettings implements FormatSettings {
         return handlers;
     }
 
+    /**
+     * @return Map key - name value - container
+     * @throws FormatSettingsException Something has gone wrong
+     */
     public Map<String, Container> getContainers() throws FormatSettingsException {
         if (containers == null) {
             containers = loadContainers(getContainersFile());

@@ -14,11 +14,17 @@ public class StringReader implements IReader {
     private int numberSymbol = 0;
     private int length;
 
+    /**
+     * @param s the string to read
+     */
     public StringReader(final String s) {
         this.currentString = s;
         length = currentString.length();
     }
 
+    /**
+     * @return the next character from string
+     */
     public Character next() {
         if (hasNext()) {
             currentSymbol = currentString.charAt(numberSymbol);
@@ -27,6 +33,9 @@ public class StringReader implements IReader {
         return currentSymbol;
     }
 
+    /**
+     * @return true if string not end
+     */
     public boolean hasNext() {
         return (numberSymbol < length);
     }

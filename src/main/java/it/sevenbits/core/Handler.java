@@ -12,7 +12,7 @@ public interface Handler {
      * @param settings Current FormatSettings
      * @throws HandlerException Something has gone wrong
      */
-    void start(FormatSettings settings) throws HandlerException; //смотрите FormatSettings
+    void start(FormatSettings settings) throws HandlerException;
 
     /**
      * Check validate symbol to this handler

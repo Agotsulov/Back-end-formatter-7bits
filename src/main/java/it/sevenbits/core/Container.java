@@ -23,23 +23,25 @@ public interface Container {
 
 
     /**
-     * @throws ContainerException
+     * Load from "file". Init vars.
+     * @throws ContainerException Something has gone wrong
      */
     void load() throws ContainerException;
 
     /**
-     * @param file
-     * @throws ContainerException
+     * Load from "file". Init vars.
+     * @param file custom filename
+     * @throws ContainerException Something has gone wrong
      */
     void load(String file) throws ContainerException;
 
     /**
-     * @param file
+     * @param file set current filename
      */
     void setFile(String file);
 
     /**
-     * @return file
+     * @return file current filename
      */
     String getFile();
 }
