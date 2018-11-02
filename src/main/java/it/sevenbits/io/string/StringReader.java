@@ -1,6 +1,6 @@
-package it.sevenbits.streams.string;
+package it.sevenbits.io.string;
 
-import it.sevenbits.streams.IReader;
+import it.sevenbits.io.IReader;
 
 /**
  *

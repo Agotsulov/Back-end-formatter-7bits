@@ -1,4 +1,4 @@
-package it.sevenbits.streams;
+package it.sevenbits.io;
 
 import it.sevenbits.exceptions.ReaderException;
 import it.sevenbits.other.Iterator;

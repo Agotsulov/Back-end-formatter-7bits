@@ -1,6 +1,6 @@
-package it.sevenbits.streams.streams;
+package it.sevenbits.io.streams;
 
-import it.sevenbits.streams.IWriter;
+import it.sevenbits.io.IWriter;
 
 import java.io.PrintStream;
 
