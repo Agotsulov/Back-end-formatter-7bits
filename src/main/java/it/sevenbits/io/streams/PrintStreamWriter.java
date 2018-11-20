@@ -1,13 +1,13 @@
 package it.sevenbits.io.streams;
 
-import it.sevenbits.io.IWriter;
+import it.sevenbits.io.Writer;
 
 import java.io.PrintStream;
 
 /**
  *
  */
-public class PrintStreamWriter implements IWriter {
+public class PrintStreamWriter implements Writer, Cloneable{
 
     private String outString = null;
 

@@ -4,7 +4,7 @@ import it.sevenbits.core.FormatterException;
 import it.sevenbits.io.WriterException;
 import it.sevenbits.formatters.simple.formatsettings.SimpleFormatSettings;
 import it.sevenbits.formatters.simple.formatters.SimpleFormatter;
-import it.sevenbits.io.IWriter;
+import it.sevenbits.io.Writer;
 import it.sevenbits.io.streams.PrintStreamWriter;
 import it.sevenbits.io.string.StringBuilderWriter;
 import it.sevenbits.io.string.StringReader;
@@ -19,7 +19,7 @@ public class Homework2 {
     void testOverdoneLogic(){
         StringBuilder actual = new StringBuilder();
         try {
-            IWriter out = new StringBuilderWriter(actual);
+            Writer out = new StringBuilderWriter(actual);
             new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("{{{{}}}}"),
                     out
@@ -35,13 +35,13 @@ public class Homework2 {
     @Test
     void overdoneLogicConsole(){
         try {
-            IWriter out = new PrintStreamWriter(System.out);
+            PrintStreamWriter out = new PrintStreamWriter(System.out);
             new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("{{{{}}}}"),
                     out
             );
             out.close();
-        } catch (FormatterException | WriterException e) {
+        } catch (FormatterException e) {
             fail("");
         }
     }
@@ -50,7 +50,7 @@ public class Homework2 {
     void testOne() {
         StringBuilder actual = new StringBuilder();
         try {
-            IWriter out = new StringBuilderWriter(actual);
+            Writer out = new StringBuilderWriter(actual);
             new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("class HelloWorld {" +
                             "public static void main(String[] args) {" +
@@ -73,7 +73,7 @@ public class Homework2 {
     void testTwo() {
         StringBuilder actual = new StringBuilder();
         try {
-            IWriter out = new StringBuilderWriter(actual);
+            Writer out = new StringBuilderWriter(actual);
             new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("    Такие       пробелы                    тоже надо       удалять;"
                             + "Это;" + "cлишко;" + "{сложна;}" + "    тут придеться запоминать слова..."),
@@ -95,7 +95,7 @@ public class Homework2 {
     void testThree() {
         StringBuilder actual = new StringBuilder();
         try {
-            IWriter out = new StringBuilderWriter(actual);
+            Writer out = new StringBuilderWriter(actual);
             new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("\n\n\n\n\n\n" +
                             "\n     \n         \n \n\n         " +

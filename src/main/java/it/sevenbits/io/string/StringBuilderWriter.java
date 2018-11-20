@@ -1,11 +1,11 @@
 package it.sevenbits.io.string;
 
-import it.sevenbits.io.IWriter;
+import it.sevenbits.io.Writer;
 
 /**
  *
  */
-public class StringBuilderWriter implements IWriter {
+public class StringBuilderWriter implements Writer {
 
     private StringBuilder out;
 
@@ -34,17 +34,4 @@ public class StringBuilderWriter implements IWriter {
         }
     }
 
-    /**
-     *
-     */
-    public void close() {
-
-    }
-
-    /**
-     *
-     */
-    public void flush() {
-
-    }
 }

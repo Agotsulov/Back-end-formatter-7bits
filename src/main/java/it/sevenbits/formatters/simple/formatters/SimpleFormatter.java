@@ -8,10 +8,10 @@ import it.sevenbits.core.FormatterException;
 import it.sevenbits.formatters.simple.formatsettings.FormatSettingsException;
 import it.sevenbits.formatters.simple.handlers.HandlerException;
 import it.sevenbits.io.ReaderException;
+import it.sevenbits.io.Writer;
 import it.sevenbits.io.WriterException;
 import it.sevenbits.formatters.simple.formatsettings.FormatSettings;
 import it.sevenbits.io.IReader;
-import it.sevenbits.io.IWriter;
 
 import java.util.Map;
 
@@ -27,7 +27,7 @@ public class SimpleFormatter implements Formatter {
     }
 
     @Override
-    public void format(final IReader reader, final IWriter writer) throws FormatterException {
+    public void format(final IReader reader, final Writer writer) throws FormatterException {
         Map<Handler, Boolean> handlers = null;
         Map<String, Container> containers = null;
         try {

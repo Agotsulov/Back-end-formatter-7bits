@@ -3,7 +3,7 @@ package it.sevenbits.io;
 /**
  *
  */
-public interface IWriter {
+public interface Writer {
 
     /**
      * @param c the character to write
@@ -17,14 +17,5 @@ public interface IWriter {
      */
     void write(String s) throws WriterException;
 
-    /**
-     * @throws WriterException Something has gone wrong
-     */
-    void close() throws WriterException;
-
-    /**
-     * @throws WriterException Something has gone wrong
-     */
-    void flush() throws WriterException;
 
 }
