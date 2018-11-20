@@ -1,10 +1,8 @@
-package it.sevenbits.handlers;
+package it.sevenbits.formatters.simple.handlers;
 
-import it.sevenbits.containers.SimpleContainer;
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.core.Handler;
-import it.sevenbits.exceptions.FormatSettingsException;
-import it.sevenbits.exceptions.HandlerException;
+import it.sevenbits.formatters.simple.containers.SimpleContainer;
+import it.sevenbits.formatters.simple.formatsettings.FormatSettings;
+import it.sevenbits.formatters.simple.formatsettings.FormatSettingsException;
 
 /**
  *

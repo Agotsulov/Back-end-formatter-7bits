@@ -1,7 +1,5 @@
 package it.sevenbits.other;
 
-import it.sevenbits.exceptions.IteratorException;
-
 /**
  * @param <T>
  */

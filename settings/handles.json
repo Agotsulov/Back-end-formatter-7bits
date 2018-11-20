@@ -1,6 +1,6 @@
 {
-  "it.sevenbits.handlers.Semicolon" : true,
-  "it.sevenbits.handlers.OpenBrace" : true,
-  "it.sevenbits.handlers.CloseBrace" : true,
-  "it.sevenbits.handlers.AnySymbol" : true
+  "it.sevenbits.formatters.simple.handlers.Semicolon" : true,
+  "it.sevenbits.formatters.simple.handlers.OpenBrace" : true,
+  "it.sevenbits.formatters.simple.handlers.CloseBrace" : true,
+  "it.sevenbits.formatters.simple.handlers.AnySymbol" : true
 }

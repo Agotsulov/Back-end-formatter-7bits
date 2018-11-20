@@ -1,8 +1,8 @@
-package it.sevenbits.exceptions;
+package it.sevenbits.io;
 
 /**
  *
  */
-public class FormatterException extends Exception {
+public class WriterException extends Exception {
     //заглушка TODO: Написать тут что нибудь
 }

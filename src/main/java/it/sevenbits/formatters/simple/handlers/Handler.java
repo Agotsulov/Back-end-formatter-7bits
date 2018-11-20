@@ -1,6 +1,6 @@
-package it.sevenbits.core;
+package it.sevenbits.formatters.simple.handlers;
 
-import it.sevenbits.exceptions.HandlerException;
+import it.sevenbits.formatters.simple.formatsettings.FormatSettings;
 
 /**
  *

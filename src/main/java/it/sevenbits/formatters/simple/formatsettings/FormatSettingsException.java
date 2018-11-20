@@ -1,4 +1,4 @@
-package it.sevenbits.exceptions;
+package it.sevenbits.formatters.simple.formatsettings;
 
 /**
  *

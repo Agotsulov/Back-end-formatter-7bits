@@ -1,6 +1,7 @@
-package it.sevenbits.core;
+package it.sevenbits.formatters.simple.formatsettings;
 
-import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.formatters.simple.containers.Container;
+import it.sevenbits.formatters.simple.handlers.Handler;
 
 import java.util.Map;
 

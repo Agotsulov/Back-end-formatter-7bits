@@ -1,6 +1,5 @@
-package it.sevenbits.containers;
+package it.sevenbits.formatters.simple.containers;
 
-import it.sevenbits.exceptions.ContainerException;
 import it.sevenbits.other.StringUtils;
 
 import java.io.File;

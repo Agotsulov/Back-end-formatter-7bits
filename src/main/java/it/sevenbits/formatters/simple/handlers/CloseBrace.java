@@ -1,15 +1,14 @@
-package it.sevenbits.handlers;
+package it.sevenbits.formatters.simple.handlers;
 
-import it.sevenbits.containers.NewLineFlagContainer;
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.exceptions.FormatSettingsException;
-import it.sevenbits.exceptions.HandlerException;
+import it.sevenbits.formatters.simple.containers.NewLineFlagContainer;
+import it.sevenbits.formatters.simple.formatsettings.FormatSettings;
+import it.sevenbits.formatters.simple.formatsettings.FormatSettingsException;
 import it.sevenbits.other.StringUtils;
 
 /**
  *
  */
-public class OpenBrace extends SimpleHandler {
+public class CloseBrace extends SimpleHandler {
 
     private NewLineFlagContainer flagContainer;
 
@@ -25,7 +24,7 @@ public class OpenBrace extends SimpleHandler {
 
     @Override
     public boolean validate(final char symbol) {
-        return (symbol == '{');
+        return (symbol == '}');
     }
 
     @Override
@@ -36,18 +35,18 @@ public class OpenBrace extends SimpleHandler {
             result += "\n";
         }
 
+        getFormat().setIndentLevel(getFormat().getIndentLevel() - 1);
+
         if (getFormat().isIndent()) {
             result += StringUtils.repeat(getFormat().getIndentString(), getFormat().getIndentLevel());
         }
 
-        result += "{";
+        result += "}";
 
         getFormat().setIndent(true);
-        getFormat().setNewLine(true);
+        getFormat().setNewLine(false);
 
         flagContainer.setNeedNewLine(true);
-
-        getFormat().setIndentLevel(getFormat().getIndentLevel() + 1);
 
         return result;
     }

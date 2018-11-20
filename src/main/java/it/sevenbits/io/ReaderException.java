@@ -1,4 +1,6 @@
-package it.sevenbits.exceptions;
+package it.sevenbits.io;
+
+import it.sevenbits.other.IteratorException;
 
 /**
  *

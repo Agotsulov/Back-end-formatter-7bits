@@ -1,12 +1,10 @@
-package it.sevenbits.formatsettings;
+package it.sevenbits.formatters.simple.formatsettings;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import it.sevenbits.core.Container;
-import it.sevenbits.core.FormatSettings;
-import it.sevenbits.core.Handler;
-import it.sevenbits.exceptions.FormatSettingsException;
+import it.sevenbits.formatters.simple.containers.Container;
+import it.sevenbits.formatters.simple.handlers.Handler;
 
 import java.io.File;
 import java.io.FileNotFoundException;

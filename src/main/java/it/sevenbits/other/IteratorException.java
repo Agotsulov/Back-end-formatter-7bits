@@ -1,8 +1,8 @@
-package it.sevenbits.exceptions;
+package it.sevenbits.other;
 
 /**
  *
  */
-public class HandlerException extends Exception {
+public class IteratorException extends Exception {
     //заглушка TODO: Написать тут что нибудь
 }

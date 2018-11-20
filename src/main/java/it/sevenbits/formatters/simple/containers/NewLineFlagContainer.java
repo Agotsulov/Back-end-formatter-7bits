@@ -1,6 +1,4 @@
-package it.sevenbits.containers;
-
-import it.sevenbits.exceptions.ContainerException;
+package it.sevenbits.formatters.simple.containers;
 
 /**
  *

@@ -1,8 +1,9 @@
 package it.sevenbits.formatters;
 
-import it.sevenbits.exceptions.FormatterException;
-import it.sevenbits.exceptions.WriterException;
-import it.sevenbits.formatsettings.SimpleFormatSettings;
+import it.sevenbits.core.FormatterException;
+import it.sevenbits.io.WriterException;
+import it.sevenbits.formatters.simple.formatsettings.SimpleFormatSettings;
+import it.sevenbits.formatters.simple.formatters.SimpleFormatter;
 import it.sevenbits.io.IWriter;
 import it.sevenbits.io.streams.PrintStreamWriter;
 import it.sevenbits.io.string.StringBuilderWriter;
@@ -19,10 +20,9 @@ public class Homework2 {
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
-            new SimpleFormatter().format(
+            new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("{{{{}}}}"),
-                    out,
-                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
+                    out
             );
         } catch (FormatterException e) {
             fail("");
@@ -36,10 +36,9 @@ public class Homework2 {
     void overdoneLogicConsole(){
         try {
             IWriter out = new PrintStreamWriter(System.out);
-            new SimpleFormatter().format(
+            new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("{{{{}}}}"),
-                    out,
-                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
+                    out
             );
             out.close();
         } catch (FormatterException | WriterException e) {
@@ -52,14 +51,13 @@ public class Homework2 {
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
-            new SimpleFormatter().format(
+            new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("class HelloWorld {" +
                             "public static void main(String[] args) {" +
                             "System.out.println(\"Hello World!\");" +
                             "}" +
                             "}"),
-                    out,
-                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
+                    out
             );
         } catch (FormatterException e) {
             fail("");
@@ -76,11 +74,10 @@ public class Homework2 {
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
-            new SimpleFormatter().format(
+            new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("    Такие       пробелы                    тоже надо       удалять;"
                             + "Это;" + "cлишко;" + "{сложна;}" + "    тут придеться запоминать слова..."),
-                    out,
-                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
+                    out
             );
         } catch (FormatterException e) {
             fail("");
@@ -99,12 +96,11 @@ public class Homework2 {
         StringBuilder actual = new StringBuilder();
         try {
             IWriter out = new StringBuilderWriter(actual);
-            new SimpleFormatter().format(
+            new SimpleFormatter(new SimpleFormatSettings("settings/containers.json", "settings/handles.json")).format(
                     new StringReader("\n\n\n\n\n\n" +
                             "\n     \n         \n \n\n         " +
                             "\n adada; \n\n\n \n\na; aa = 5; \n\n\n\n\n\n"),
-                    out,
-                    new SimpleFormatSettings("settings/containers.json", "settings/handles.json")
+                    out
             );
         } catch (FormatterException e) {
             fail("");

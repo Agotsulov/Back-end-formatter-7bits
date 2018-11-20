@@ -1,7 +1,5 @@
 package it.sevenbits.io;
 
-import it.sevenbits.exceptions.WriterException;
-
 /**
  *
  */

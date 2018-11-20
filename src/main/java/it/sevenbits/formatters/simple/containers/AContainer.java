@@ -1,6 +1,4 @@
-package it.sevenbits.containers;
-
-import it.sevenbits.core.Container;
+package it.sevenbits.formatters.simple.containers;
 
 
 /**
