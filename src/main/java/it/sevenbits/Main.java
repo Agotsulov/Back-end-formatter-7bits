@@ -11,7 +11,7 @@ import it.sevenbits.io.file.FileWriter;
 
 public class Main {
 
-    public void main(final String[] args) {
+    public static void main(final String[] args) {
         try {
             FileWriter fileWriter = new FileWriter(args[0]);
             FileReader fileReader = new FileReader(args[1]);
