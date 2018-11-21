@@ -7,7 +7,7 @@ import java.io.PrintStream;
 /**
  *
  */
-public class PrintStreamWriter implements Writer, Cloneable{
+public class PrintStreamWriter implements Writer, Cloneable {
 
     private String outString = null;
 

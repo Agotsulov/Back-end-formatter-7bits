@@ -1,20 +1,21 @@
 package it.sevenbits.formatters.lexer.lexers;
 
+import it.sevenbits.formatters.lexer.tokens.AnySymbol;
+import it.sevenbits.io.Reader;
 import it.sevenbits.other.IteratorException;
 import it.sevenbits.formatters.lexer.tokens.Token;
-import it.sevenbits.io.IReader;
 
 public class SimpleLexer implements Lexer {
 
-    private IReader reader;
+    private Reader reader;
 
-    public SimpleLexer(IReader reader) {
+    public SimpleLexer(Reader reader) {
         this.reader = reader;
     }
 
     @Override
     public Token next() throws IteratorException {
-        return null;
+        return new AnySymbol("" + reader.next());
     }
 
     @Override

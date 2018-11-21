@@ -1,11 +1,11 @@
 package it.sevenbits.io.string;
 
-import it.sevenbits.io.IReader;
+import it.sevenbits.io.Reader;
 
 /**
  *
  */
-public class StringReader implements IReader {
+public class StringReader implements Reader {
 
     private String currentString;
 

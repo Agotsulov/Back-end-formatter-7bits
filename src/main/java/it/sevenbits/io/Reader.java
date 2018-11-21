@@ -5,7 +5,7 @@ import it.sevenbits.other.Iterator;
 /**
  *
  */
-public interface IReader extends Iterator<Character> {
+public interface Reader extends Iterator<Character> {
 
     /*
         Вместо read() у меня next()

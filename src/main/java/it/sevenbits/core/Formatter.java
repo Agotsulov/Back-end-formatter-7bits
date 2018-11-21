@@ -1,7 +1,7 @@
 package it.sevenbits.core;
 
 
-import it.sevenbits.io.IReader;
+import it.sevenbits.io.Reader;
 import it.sevenbits.io.Writer;
 
 /**
@@ -10,10 +10,10 @@ import it.sevenbits.io.Writer;
 public interface Formatter {
 
     /**
-     * @param reader IReader
+     * @param reader Reader
      * @param writer Writer
      * @throws FormatterException Something has gone wrong
      */
-    void format(IReader reader, Writer writer) throws FormatterException;
+    void format(Reader reader, Writer writer) throws FormatterException;
 
 }
