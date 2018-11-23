@@ -1,0 +1,4 @@
+[
+  {"name":"SimpleContainer","path":"it.sevenbits.formatters.simple.containers.SimpleContainer","file":"settings/simpleContainer.properties"},
+  {"name":"NewLineFlagContainer","path":"it.sevenbits.formatters.simple.containers.NewLineFlagContainer","file":null}
+]

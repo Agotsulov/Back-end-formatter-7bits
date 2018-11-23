@@ -1,9 +1,8 @@
 package it.sevenbits.formatters;
 
 import it.sevenbits.core.FormatterException;
-import it.sevenbits.io.WriterException;
 import it.sevenbits.formatters.simple.formatsettings.SimpleFormatSettings;
-import it.sevenbits.formatters.simple.formatters.SimpleFormatter;
+import it.sevenbits.formatters.simple.SimpleFormatter;
 import it.sevenbits.io.Writer;
 import it.sevenbits.io.streams.PrintStreamWriter;
 import it.sevenbits.io.string.StringBuilderWriter;

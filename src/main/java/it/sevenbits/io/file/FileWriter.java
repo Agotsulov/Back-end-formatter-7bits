@@ -7,10 +7,17 @@ import it.sevenbits.io.WriterException;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
+/**
+ *
+ */
 public class FileWriter implements Writer, Closeable {
 
     private BufferedWriter writer;
 
+    /**
+     * @param path path to file
+     * @throws WriterException Something has gone wrong
+     */
     public FileWriter(final String path) throws WriterException {
         try {
             writer = new BufferedWriter(new java.io.FileWriter(path));
@@ -19,8 +26,12 @@ public class FileWriter implements Writer, Closeable {
         }
     }
 
+    /**
+     * @param c the character to write
+     * @throws WriterException Something has gone wrong
+     */
     @Override
-    public void write(char c) throws WriterException {
+    public void write(final char c) throws WriterException {
         try {
             writer.write(c);
         } catch (IOException e) {
@@ -28,8 +39,12 @@ public class FileWriter implements Writer, Closeable {
         }
     }
 
+    /**
+     * @param s the string to write
+     * @throws WriterException Something has gone wrong
+     */
     @Override
-    public void write(String s) throws WriterException {
+    public void write(final String s) throws WriterException {
         try {
             writer.write(s);
         } catch (IOException e) {
@@ -37,6 +52,10 @@ public class FileWriter implements Writer, Closeable {
         }
     }
 
+    /**
+     * write and close file
+     * @throws WriterException Something has gone wrong
+     */
     @Override
     public void close() throws WriterException {
         try {
@@ -46,6 +65,10 @@ public class FileWriter implements Writer, Closeable {
         }
     }
 
+    /**
+     * write to file
+     * @throws WriterException Something has gone wrong
+     */
     @Override
     public void flush() throws WriterException {
         try {

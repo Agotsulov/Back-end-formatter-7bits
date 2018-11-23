@@ -1,6 +1,7 @@
-package it.sevenbits.formatters.simple.handlers;
+package it.sevenbits.formatters.lexer.handlers;
 
-import it.sevenbits.formatters.simple.formatsettings.FormatSettings;
+import it.sevenbits.formatters.lexer.formatsettings.LexerSettings;
+import it.sevenbits.formatters.lexer.tokens.Token;
 
 /**
  *
@@ -12,14 +13,14 @@ public interface Handler {
      * @param settings Current LexerSettings
      * @throws HandlerException Something has gone wrong
      */
-    void start(FormatSettings settings) throws HandlerException;
+    void start(LexerSettings settings) throws HandlerException;
 
     /**
      * Check validate symbol to this handler
-     * @param symbol character
+     * @param token token
      * @return true if it valid
      */
-    boolean validate(char symbol);
+    boolean validate(Token token);
 
     /**
      * Call if validate true

@@ -1,4 +1,4 @@
-package it.sevenbits.formatters.simple.formatters;
+package it.sevenbits.formatters.simple;
 
 import it.sevenbits.formatters.simple.containers.Container;
 import it.sevenbits.core.Formatter;
@@ -22,7 +22,10 @@ public class SimpleFormatter implements Formatter {
 
     private FormatSettings settings;
 
-    public SimpleFormatter(FormatSettings formatSettings) {
+    /**
+     * @param formatSettings settings
+     */
+    public SimpleFormatter(final FormatSettings formatSettings) {
         settings = formatSettings;
     }
 
