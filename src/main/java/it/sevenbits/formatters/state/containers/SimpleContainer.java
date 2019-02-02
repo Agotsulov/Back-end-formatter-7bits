@@ -13,7 +13,6 @@ import java.util.Properties;
 public class SimpleContainer extends AContainer {
 
     private boolean indent = false;
-    private boolean isNewLine = true;
     private int indentLevel = 0;
 
     private String indentString = "";
@@ -38,44 +37,6 @@ public class SimpleContainer extends AContainer {
         indentString = StringUtils.repeat(indentChar, indentLength);
     }
 
-    @Override
-    public String get(final String key) throws ContainerException {
-        /*
-            Это плохо.
-            Но если нам надо что то новое мы просто пишем новый Container.
-            И тут не много кода всегда будет.
-         */
-        if ("indent".equals(key)) {
-            return Boolean.toString(indent);
-        }
-        if ("isNewLine".equals(key)) {
-            return Boolean.toString(isNewLine);
-        }
-        if ("indentLevel".equals(key)) {
-            return Integer.toString(indentLevel);
-        }
-        if ("indentString ".equals(key)) {
-            return indentString;
-        }
-        throw new ContainerException();
-    }
-
-    @Override
-    public void set(final String key, final String value) {
-        if ("indent".equals(key)) {
-            indent = Boolean.valueOf(value);
-        }
-        if ("isNewLine".equals(key)) {
-            isNewLine = Boolean.valueOf(value);
-        }
-        if ("indentLevel".equals(key)) {
-            indentLevel = Integer.valueOf(value);
-        }
-        if ("indentString".equals(key)) {
-            indentString = value;
-        }
-    }
-
     public boolean isIndent() {
         return indent;
     }
@@ -84,13 +45,6 @@ public class SimpleContainer extends AContainer {
         this.indent = indent;
     }
 
-    public boolean isNewLine() {
-        return isNewLine;
-    }
-
-    public void setNewLine(final boolean newLine) {
-        isNewLine = newLine;
-    }
 
     public int getIndentLevel() {
         return indentLevel;

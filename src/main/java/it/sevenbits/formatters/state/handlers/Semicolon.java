@@ -32,7 +32,6 @@ public class Semicolon extends SimpleHandler {
         }
 
         getFormat().setIndent(true);
-        getFormat().setNewLine(true);
 
         flagContainer.setNeedNewLine(true);
 

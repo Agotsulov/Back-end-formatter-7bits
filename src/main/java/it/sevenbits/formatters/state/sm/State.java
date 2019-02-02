@@ -10,10 +10,6 @@ public class State {
         this.currentState = currentState;
     }
 
-    public String toString() {
-        return currentState;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

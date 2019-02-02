@@ -5,20 +5,6 @@ package it.sevenbits.formatters.state.containers;
  */
 public interface Container {
 
-    /**
-     * @param key название переменной
-     * @return значение переменной
-     * @throws ContainerException что то пошло не так
-     */
-    String get(String key) throws ContainerException;
-
-    /**
-     * @param key название переменной
-     * @param value значение
-     * @throws ContainerException что то пошло не так
-     */
-    void set(String key, String value) throws ContainerException;
-
 
 
     /*

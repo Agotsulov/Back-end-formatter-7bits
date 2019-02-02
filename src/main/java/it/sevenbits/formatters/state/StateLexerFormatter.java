@@ -3,11 +3,11 @@ package it.sevenbits.formatters.state;
 import it.sevenbits.core.Formatter;
 import it.sevenbits.core.FormatterException;
 import it.sevenbits.formatters.state.handlers.HandlerException;
-import it.sevenbits.formatters.state.lexers.lexerfactories.LexerFactory;
-import it.sevenbits.formatters.state.lexers.lexerfactories.LexerFactoryException;
+import it.sevenbits.formatters.state.lexers.factories.LexerFactory;
+import it.sevenbits.formatters.state.lexers.factories.LexerFactoryException;
 import it.sevenbits.formatters.state.lexers.Lexer;
-import it.sevenbits.formatters.state.sm.loaders.StateEngineFactory;
-import it.sevenbits.formatters.state.sm.loaders.StateEngineFactoryException;
+import it.sevenbits.formatters.state.sm.factories.StateEngineFactory;
+import it.sevenbits.formatters.state.sm.factories.StateEngineFactoryException;
 import it.sevenbits.formatters.state.tokens.Token;
 import it.sevenbits.formatters.state.handlers.Handler;
 import it.sevenbits.formatters.state.sm.StateEngine;
@@ -58,7 +58,7 @@ public class StateLexerFormatter implements Formatter {
 
         try {
             StateEngine<Handler> stateEngine = stateEngineFactory.getStateEngine();
-
+            //StateEngine<Token> lexer = null;
             Lexer lexer = lexerFactory.createLexer(reader);
 
             while (lexer.hasNext()) {

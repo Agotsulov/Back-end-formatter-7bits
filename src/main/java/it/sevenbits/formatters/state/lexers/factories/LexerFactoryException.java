@@ -1,4 +1,4 @@
-package it.sevenbits.formatters.state.lexers.lexerfactories;
+package it.sevenbits.formatters.state.lexers.factories;
 
 /**
  *

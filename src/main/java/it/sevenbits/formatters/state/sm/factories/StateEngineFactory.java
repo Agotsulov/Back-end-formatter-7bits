@@ -1,4 +1,4 @@
-package it.sevenbits.formatters.state.sm.loaders;
+package it.sevenbits.formatters.state.sm.factories;
 
 import it.sevenbits.formatters.state.sm.StateEngine;
 import it.sevenbits.formatters.state.sm.StateMap;

@@ -24,7 +24,4 @@ public abstract class SimpleHandler implements Handler {
         return format;
     }
 
-    public void setFormat(final SimpleContainer format) {
-        this.format = format;
-    }
 }

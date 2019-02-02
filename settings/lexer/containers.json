@@ -5,13 +5,8 @@
     "file":"settings/simpleContainer.properties"
   },
   {
-    "name":"NewLineFlagContainer",
-    "path":"it.sevenbits.formatters.state.containers.NewLineFlagContainer",
-    "file":null
-  },
-  {
-    "name":"TokenContainer",
-    "path":"it.sevenbits.formatters.state.containers.TokenContainer",
-    "file":null
+    "name": "NewLineFlagContainer",
+    "path": "it.sevenbits.formatters.state.containers.NewLineFlagContainer",
+    "file": null
   }
 ]

@@ -1,4 +1,4 @@
-package it.sevenbits.formatters.state.sm.loaders;
+package it.sevenbits.formatters.state.sm.factories;
 
 import it.sevenbits.formatters.state.sm.Pair;
 import it.sevenbits.formatters.state.sm.State;

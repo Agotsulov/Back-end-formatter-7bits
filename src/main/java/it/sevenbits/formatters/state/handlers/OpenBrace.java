@@ -38,7 +38,6 @@ public class OpenBrace extends SimpleHandler {
         result += lexeme;
 
         getFormat().setIndent(true);
-        getFormat().setNewLine(true);
 
         flagContainer.setNeedNewLine(true);
 

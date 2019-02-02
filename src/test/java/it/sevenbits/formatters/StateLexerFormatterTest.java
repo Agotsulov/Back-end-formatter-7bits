@@ -2,9 +2,9 @@ package it.sevenbits.formatters;
 
 import it.sevenbits.core.FormatterException;
 import it.sevenbits.formatters.state.formatsettings.SimpleLexerSettings;
-import it.sevenbits.formatters.state.lexers.lexerfactories.SimpleLexerFactory;
+import it.sevenbits.formatters.state.lexers.factories.SimpleLexerFactory;
 import it.sevenbits.formatters.state.StateLexerFormatter;
-import it.sevenbits.formatters.state.sm.loaders.DefaultFormatterStateEngineFactory;
+import it.sevenbits.formatters.state.sm.factories.DefaultFormatterStateEngineFactory;
 import it.sevenbits.io.Writer;
 import it.sevenbits.io.streams.PrintStreamWriter;
 import it.sevenbits.io.string.StringBuilderWriter;
@@ -22,7 +22,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new SimpleLexerFactory(),
-                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"))
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
             ).format(new StringReader("aaaaa;;;babaf;b;faba;f"), out);
         } catch (FormatterException e) {
             fail("");
@@ -34,13 +34,37 @@ public class StateLexerFormatterTest {
                 "f", actual.toString());
     }
 
+
+
+    @Test
+    public void testSimpleLexer2() {
+        StringBuilder actual = new StringBuilder();
+        try {
+            Writer out = new StringBuilderWriter(actual);
+            new StateLexerFormatter(new SimpleLexerFactory(),
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+            ).format(new StringReader("{{{{a;}}}}"), out);
+        } catch (FormatterException e) {
+            fail("");
+        }
+        assertEquals("{\n" +
+                "    {\n" +
+                "        {\n" +
+                "            {\n" +
+                "                a;\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "}", actual.toString());
+    }
+
     @Test
     public void first(){
         StringBuilder actual = new StringBuilder();
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new SimpleLexerFactory(),
-                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"))
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("aaa { bbbb; ccc;}"),
                     out
@@ -56,7 +80,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new SimpleLexerFactory(),
-                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"))
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("aaa { bbbb; ccc;}"),
                     out
@@ -73,7 +97,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new SimpleLexerFactory(),
-                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"))
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("class HelloWorld {" +
                             "public static void main(String[] args) {" +
@@ -97,9 +121,9 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new SimpleLexerFactory(),
-                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"))
+                    new DefaultFormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
             ).format(
-                    new StringReader("class HelloWorld {" +
+                    new StringReader("class HelloWorld {\n" +
                             "public static void main(String[] args) {" +
                             "System.out.println(\"Hello World!\");" +
                             "}" +

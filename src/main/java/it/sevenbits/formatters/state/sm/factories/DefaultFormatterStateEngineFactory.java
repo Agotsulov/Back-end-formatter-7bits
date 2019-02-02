@@ -1,14 +1,11 @@
-package it.sevenbits.formatters.state.sm.loaders;
+package it.sevenbits.formatters.state.sm.factories;
 
 import it.sevenbits.formatters.state.containers.Container;
 import it.sevenbits.formatters.state.containers.ContainerException;
 import it.sevenbits.formatters.state.formatsettings.LexerSettings;
 import it.sevenbits.formatters.state.formatsettings.LexerSettingsException;
 import it.sevenbits.formatters.state.handlers.*;
-import it.sevenbits.formatters.state.sm.Pair;
-import it.sevenbits.formatters.state.sm.State;
-import it.sevenbits.formatters.state.sm.StateEngine;
-import it.sevenbits.formatters.state.sm.StateMap;
+import it.sevenbits.formatters.state.sm.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +27,11 @@ public class DefaultFormatterStateEngineFactory implements StateEngineFactory<Ha
 
         states.put(new Pair<>(defaultState, "Word"), defaultState);
         states.put(new Pair<>(defaultState, "Spaces"), defaultState);
+
+
+        states.put(new Pair<>(defaultState, "NewLine"), defaultState);
+        states.put(new Pair<>(needNewLineState, "NewLine"), defaultState);
+
 
         states.put(new Pair<>(needNewLineState, "Word"), defaultState);
         states.put(new Pair<>(needNewLineState, "Spaces"), defaultState);
@@ -55,6 +57,9 @@ public class DefaultFormatterStateEngineFactory implements StateEngineFactory<Ha
 
         commands.put(new Pair<>(defaultState, "Word"), new AnySymbol());
         commands.put(new Pair<>(defaultState, "Spaces"), new AnySymbol());
+
+        commands.put(new Pair<>(defaultState, "NewLine"), new Skip());
+        commands.put(new Pair<>(needNewLineState, "NewLine"), new Skip());
 
         commands.put(new Pair<>(needNewLineState, "Word"), new AnySymbol());
         commands.put(new Pair<>(needNewLineState, "Spaces"), new Skip());
@@ -84,7 +89,7 @@ public class DefaultFormatterStateEngineFactory implements StateEngineFactory<Ha
             throw new StateEngineFactoryException();
         }
 
-        return new StateEngine<>(getStateMap(), commands);
+        return new HandlerStateEngine(getStateMap(), commands);
     }
 
 

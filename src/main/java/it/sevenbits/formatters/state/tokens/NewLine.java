@@ -7,7 +7,7 @@ public class NewLine implements Token {
 
     @Override
     public String getName() {
-        return "Newline";
+        return "NewLine";
     }
 
     @Override

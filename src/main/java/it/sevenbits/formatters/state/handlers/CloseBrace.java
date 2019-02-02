@@ -40,7 +40,6 @@ public class CloseBrace extends SimpleHandler {
         result += lexeme;
 
         getFormat().setIndent(true);
-        getFormat().setNewLine(false);
 
         flagContainer.setNeedNewLine(true);
 
