@@ -2,9 +2,10 @@ package it.sevenbits;
 
 import it.sevenbits.core.Formatter;
 import it.sevenbits.core.FormatterException;
-import it.sevenbits.formatters.lexer.LexerFormatter;
-import it.sevenbits.formatters.lexer.formatsettings.SimpleLexerSettings;
-import it.sevenbits.formatters.lexer.lexerfactories.SimpleLexerFactory;
+import it.sevenbits.formatters.state.StateLexerFormatter;
+import it.sevenbits.formatters.state.formatsettings.SimpleLexerSettings;
+import it.sevenbits.formatters.state.lexers.lexerfactories.SimpleLexerFactory;
+import it.sevenbits.formatters.state.sm.loaders.DefaultFormatterStateEngineFactory;
 import it.sevenbits.io.ReaderException;
 import it.sevenbits.io.WriterException;
 import it.sevenbits.io.file.FileReader;
@@ -25,9 +26,11 @@ public final class Main {
             FileWriter fileWriter = new FileWriter(args[0]);
             FileReader fileReader = new FileReader(args[1]);
 
-            Formatter formatter = new LexerFormatter(new SimpleLexerFactory(),
-                    new SimpleLexerSettings("settings/lexer/containers.json", "settings/lexer/handles.json"));
-
+            Formatter formatter = new StateLexerFormatter(new SimpleLexerFactory(),
+                    new DefaultFormatterStateEngineFactory(
+                            new SimpleLexerSettings("settings/lexer/containers.json",
+                                    "settings/lexer/handles.json"))
+            );
             formatter.format(fileReader, fileWriter);
 
         } catch (WriterException | ReaderException | FormatterException e) {

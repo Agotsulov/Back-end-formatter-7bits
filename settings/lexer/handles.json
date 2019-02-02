@@ -2,5 +2,6 @@
   "it.sevenbits.formatters.lexer.handlers.Semicolon" : true,
   "it.sevenbits.formatters.lexer.handlers.OpenBrace" : true,
   "it.sevenbits.formatters.lexer.handlers.CloseBrace" : true,
-  "it.sevenbits.formatters.lexer.handlers.AnySymbol" : true
+  "it.sevenbits.formatters.lexer.handlers.AnySymbol" : true,
+  "it.sevenbits.formatters.lexer.handlers.Skip" : true
 }
