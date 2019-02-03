@@ -1,7 +1,5 @@
 package it.sevenbits.formatters.state.tokens;
 
-import java.util.Objects;
-
 public class UniversalToken implements Token{
 
     private String name;
@@ -22,17 +20,5 @@ public class UniversalToken implements Token{
         return lexeme;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UniversalToken that = (UniversalToken) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(lexeme, that.lexeme);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, lexeme);
-    }
 }

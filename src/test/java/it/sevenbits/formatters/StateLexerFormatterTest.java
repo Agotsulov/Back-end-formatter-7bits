@@ -155,4 +155,24 @@ public class StateLexerFormatterTest {
             fail("");
         }
     }
+
+    @Test
+    public void firstHelloWorldConsole3(){
+        try {
+            PrintStreamWriter out = new PrintStreamWriter(System.out);
+            new StateLexerFormatter(new StateLexerFactory(),
+                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+            ).format(
+                    new StringReader("\"class HelloWorld {\n" +
+                            "public static void main(String[] args) {" +
+                            "System.out.println(\"{Hello {World!}}\");" +
+                            "}" +
+                            "}\""),
+                    out
+            );
+            out.close();
+        } catch (FormatterException e) {
+            fail("");
+        }
+    }
 }

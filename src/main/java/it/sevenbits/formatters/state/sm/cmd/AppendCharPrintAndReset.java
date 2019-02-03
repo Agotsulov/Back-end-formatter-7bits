@@ -5,12 +5,12 @@ import it.sevenbits.formatters.state.tokens.UniversalToken;
 import it.sevenbits.formatters.state.tokens.Word;
 import it.sevenbits.other.ContainerStringBuilder;
 
-public class AppendCharWithSpaces implements Command{
+public class AppendCharPrintAndReset implements Command{
 
     private ContainerStringBuilder cs;
     private ContainerStringBuilder forSpaces;
 
-    public AppendCharWithSpaces(final ContainerStringBuilder cs, final ContainerStringBuilder forSpaces) {
+    public AppendCharPrintAndReset(final ContainerStringBuilder cs, final ContainerStringBuilder forSpaces) {
         this.cs = cs;
         this.forSpaces = forSpaces;
     }

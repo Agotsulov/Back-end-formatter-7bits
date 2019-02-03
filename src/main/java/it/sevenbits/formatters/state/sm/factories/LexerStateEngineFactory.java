@@ -15,6 +15,7 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
 
         State defaultState = new State("READING");
         State spacesState = new State("SPACES");
+        State stringLiteralState = new State("STRING_LITERAL");
 
         states.put(new Pair<>(defaultState, ""), defaultState);
         states.put(new Pair<>(defaultState, "\n"), defaultState);
@@ -26,6 +27,11 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
         states.put(new Pair<>(defaultState, " "), spacesState);
 
         states.put(new Pair<>(spacesState, " "), spacesState);
+
+        states.put(new Pair<>(defaultState, "\""), stringLiteralState);
+        states.put(new Pair<>(stringLiteralState, "\""), defaultState);
+        states.put(new Pair<>(stringLiteralState, ""), stringLiteralState);
+
 
         states.put(new Pair<>(spacesState, ""), defaultState);
         states.put(new Pair<>(spacesState, "\n"), defaultState);
@@ -43,6 +49,7 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
 
         State defaultState = new State("READING");
         State spacesState = new State("SPACES");
+        State stringLiteralState = new State("STRING_LITERAL");
 
         ContainerStringBuilder cs = new ContainerStringBuilder();
         ContainerStringBuilder forSpaces = new ContainerStringBuilder();
@@ -59,12 +66,18 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
 
         commands.put(new Pair<>(spacesState, " "),  new AppendChar(forSpaces));
 
-        commands.put(new Pair<>(spacesState, ""), new AppendCharWithSpaces(cs, forSpaces));
+        commands.put(new Pair<>(defaultState, "\""), new AppendCharPrintAndReset(cs, forSpaces));
+        commands.put(new Pair<>(stringLiteralState, "\""), new AppendCharPrintAndReset(cs, forSpaces));
+        commands.put(new Pair<>(stringLiteralState, ""), new AppendChar(cs));
+
+        commands.put(new Pair<>(spacesState, ""), new AppendCharPrintAndReset(cs, forSpaces));
         commands.put(new Pair<>(spacesState, "\n"), new AddTokenWithSpaces(new NewLine(), cs, "Word", forSpaces));
         commands.put(new Pair<>(spacesState, "\r"), new AddTokenWithSpaces(new NewLine(), cs, "Word", forSpaces));
         commands.put(new Pair<>(spacesState, ";"), new AddTokenWithSpaces(new Semicolon(), cs, "Word", forSpaces));
         commands.put(new Pair<>(spacesState, "{"), new AddTokenWithSpaces(new OpenBrace(), cs, "Word", forSpaces));
         commands.put(new Pair<>(spacesState, "}"), new AddTokenWithSpaces(new CloseBrace(), cs, "Word", forSpaces));
+
+
 
         return new SimpleStateEngine(getStateMap(), commands);
     }
