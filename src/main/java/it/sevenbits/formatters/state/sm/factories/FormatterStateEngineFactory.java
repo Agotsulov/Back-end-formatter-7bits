@@ -10,15 +10,14 @@ import it.sevenbits.formatters.state.sm.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultFormatterStateEngineFactory implements StateEngineFactory<Handler> {
+public class FormatterStateEngineFactory implements StateEngineFactory<Handler> {
 
     private LexerSettings lexerSettings;
 
-    public DefaultFormatterStateEngineFactory(LexerSettings lexerSettings) {
+    public FormatterStateEngineFactory(LexerSettings lexerSettings) {
         this.lexerSettings = lexerSettings;
     }
 
-    @Override
     public StateMap getStateMap() {
         Map<Pair<State, String>, State> states = new HashMap<>();
 
@@ -89,7 +88,7 @@ public class DefaultFormatterStateEngineFactory implements StateEngineFactory<Ha
             throw new StateEngineFactoryException();
         }
 
-        return new HandlerStateEngine(getStateMap(), commands);
+        return new SimpleStateEngine(getStateMap(), commands);
     }
 
 

@@ -6,6 +6,8 @@ import java.util.Map;
 public class StateMap {
     private final State defaultState;
 
+    private State anyState = new State("");
+
     private final Map<Pair<State, String>, State> states;
 
     public StateMap(final Map<Pair<State, String>, State> states, final State defaultState) {
@@ -18,6 +20,6 @@ public class StateMap {
     }
 
     public State getNextState(final State state, final String signal) {
-        return states.getOrDefault(new Pair<>(state, signal), null);
+        return states.getOrDefault(new Pair<>(state, signal), anyState);
     }
 }

@@ -8,6 +8,9 @@ import it.sevenbits.other.Iterator;
  */
 public interface Lexer extends Iterator<Token> {
 
-    Token getCurrent();
+    void addToken(Token token);
+
+    char getCurrentChar();
+
 
 }

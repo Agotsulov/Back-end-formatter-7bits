@@ -59,11 +59,4 @@ public class SimpleContainer extends AContainer {
         return indentString;
     }
 
-    public void setIndentString(final String indentString) {
-        this.indentString = indentString;
-    }
-
-    public String getCurrentIndentString() {
-        return currentIndentString;
-    }
 }

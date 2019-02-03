@@ -3,9 +3,9 @@ package it.sevenbits.formatters.state;
 import it.sevenbits.core.Formatter;
 import it.sevenbits.core.FormatterException;
 import it.sevenbits.formatters.state.handlers.HandlerException;
+import it.sevenbits.formatters.state.lexers.Lexer;
 import it.sevenbits.formatters.state.lexers.factories.LexerFactory;
 import it.sevenbits.formatters.state.lexers.factories.LexerFactoryException;
-import it.sevenbits.formatters.state.lexers.Lexer;
 import it.sevenbits.formatters.state.sm.factories.StateEngineFactory;
 import it.sevenbits.formatters.state.sm.factories.StateEngineFactoryException;
 import it.sevenbits.formatters.state.tokens.Token;
@@ -15,6 +15,9 @@ import it.sevenbits.io.Reader;
 import it.sevenbits.io.Writer;
 import it.sevenbits.io.WriterException;
 import it.sevenbits.other.IteratorException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *Доделываем свой maven проект, проект должен корректно собираться и запускаться через java -jar
