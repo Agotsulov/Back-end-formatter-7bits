@@ -15,7 +15,7 @@ public class AppendChar implements Command{
     @Override
     public void execute(StateLexer lexer) {
         cs.append(lexer.getCurrentChar());
-        if (!lexer.hasNextChar()) { //(не)много костылей
+        if (!lexer.hasNextChar()) {
             lexer.addToken(new Word(cs.toString()));
         }
     }

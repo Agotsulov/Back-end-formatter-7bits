@@ -27,13 +27,15 @@ public class FormatterStateEngineFactory implements StateEngineFactory<Handler> 
         states.put(new Pair<>(defaultState, "Word"), defaultState);
         states.put(new Pair<>(defaultState, "Spaces"), defaultState);
 
-
         states.put(new Pair<>(defaultState, "NewLine"), defaultState);
         states.put(new Pair<>(needNewLineState, "NewLine"), defaultState);
 
+        states.put(new Pair<>(defaultState, "Comment"), defaultState);
 
         states.put(new Pair<>(needNewLineState, "Word"), defaultState);
         states.put(new Pair<>(needNewLineState, "Spaces"), defaultState);
+
+        states.put(new Pair<>(needNewLineState, "Comment"), defaultState);
 
         states.put(new Pair<>(defaultState, "CloseBrace"), needNewLineState);
         states.put(new Pair<>(defaultState, "OpenBrace"), needNewLineState);
@@ -54,13 +56,14 @@ public class FormatterStateEngineFactory implements StateEngineFactory<Handler> 
         State defaultState = new State("DEFAULT");
         State needNewLineState = new State("NEED_NEW_LINE");
 
-        commands.put(new Pair<>(defaultState, "Word"), new AnySymbol());
-        commands.put(new Pair<>(defaultState, "Spaces"), new AnySymbol());
+        commands.put(new Pair<>(defaultState, "Word"), new Any());
+        commands.put(new Pair<>(defaultState, "Comment"), new Comment());
+        commands.put(new Pair<>(defaultState, "Spaces"), new Any());
 
         commands.put(new Pair<>(defaultState, "NewLine"), new Skip());
         commands.put(new Pair<>(needNewLineState, "NewLine"), new Skip());
 
-        commands.put(new Pair<>(needNewLineState, "Word"), new AnySymbol());
+        commands.put(new Pair<>(needNewLineState, "Word"), new Any());
         commands.put(new Pair<>(needNewLineState, "Spaces"), new Skip());
 
         commands.put(new Pair<>(defaultState, "CloseBrace"), new CloseBrace());

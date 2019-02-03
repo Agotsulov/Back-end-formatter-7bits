@@ -16,6 +16,8 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
         State defaultState = new State("READING");
         State spacesState = new State("SPACES");
         State stringLiteralState = new State("STRING_LITERAL");
+        State preCommentState = new State("PRE_COMMENT");
+        State oneLineCommentState = new State("ONE_LINE_COMMENT");
 
         states.put(new Pair<>(defaultState, ""), defaultState);
         states.put(new Pair<>(defaultState, "\n"), defaultState);
@@ -32,6 +34,18 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
         states.put(new Pair<>(stringLiteralState, "\""), defaultState);
         states.put(new Pair<>(stringLiteralState, ""), stringLiteralState);
 
+
+        states.put(new Pair<>(defaultState, "/"), preCommentState);
+        states.put(new Pair<>(preCommentState, "/"), oneLineCommentState);
+        states.put(new Pair<>(oneLineCommentState, "\n"), defaultState);
+        states.put(new Pair<>(oneLineCommentState, ""), oneLineCommentState);
+
+        states.put(new Pair<>(preCommentState, ""), defaultState);
+        states.put(new Pair<>(preCommentState, "\n"), defaultState);
+        states.put(new Pair<>(preCommentState, "\r"), defaultState);
+        states.put(new Pair<>(preCommentState, ";"), defaultState);
+        states.put(new Pair<>(preCommentState, "{"), defaultState);
+        states.put(new Pair<>(preCommentState, "}"), defaultState);
 
         states.put(new Pair<>(spacesState, ""), defaultState);
         states.put(new Pair<>(spacesState, "\n"), defaultState);
@@ -50,8 +64,12 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
         State defaultState = new State("READING");
         State spacesState = new State("SPACES");
         State stringLiteralState = new State("STRING_LITERAL");
+        State preCommentState = new State("PRE_COMMENT");
+        State oneLineCommentState = new State("ONE_LINE_COMMENT");
+
 
         ContainerStringBuilder cs = new ContainerStringBuilder();
+        ContainerStringBuilder comment = new ContainerStringBuilder();
         ContainerStringBuilder forSpaces = new ContainerStringBuilder();
 
         commands.put(new Pair<>(defaultState, ""), new AppendChar(cs));
@@ -78,6 +96,17 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
         commands.put(new Pair<>(spacesState, "}"), new AddTokenWithSpaces(new CloseBrace(), cs, "Word", forSpaces));
 
 
+        commands.put(new Pair<>(defaultState, "/"), new AppendCharPrintAndReset(cs, forSpaces));
+        commands.put(new Pair<>(preCommentState, "/"), new AppendChar(cs));
+        commands.put(new Pair<>(oneLineCommentState, "\n"),  new AppendCharWithToken(cs, new UniversalToken("Comment","")));
+        commands.put(new Pair<>(oneLineCommentState, ""), new AppendChar(cs));
+
+        commands.put(new Pair<>(preCommentState, ""),  new AppendChar(cs));
+        commands.put(new Pair<>(preCommentState, "\n"), new AddTokenWith(new NewLine(), cs, "Word"));
+        commands.put(new Pair<>(preCommentState, "\r"), new AddTokenWith(new NewLine(), cs, "Word"));
+        commands.put(new Pair<>(preCommentState, ";"), new AddTokenWith(new Semicolon(), cs, "Word"));
+        commands.put(new Pair<>(preCommentState, "{"), new AddTokenWith(new OpenBrace(), cs, "Word"));
+        commands.put(new Pair<>(preCommentState, "}"), new AddTokenWith(new CloseBrace(), cs, "Word"));
 
         return new SimpleStateEngine(getStateMap(), commands);
     }

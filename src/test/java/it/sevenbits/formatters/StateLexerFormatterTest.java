@@ -175,4 +175,25 @@ public class StateLexerFormatterTest {
             fail("");
         }
     }
+
+    @Test
+    public void firstHelloWorldConsoleComments(){
+        try {
+            PrintStreamWriter out = new PrintStreamWriter(System.out);
+            new StateLexerFormatter(new StateLexerFactory(),
+                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+            ).format(
+                    new StringReader("class HelloWorld {\n" +
+                            "//public static void main(String[] args) {}}}{}}\n" +
+                            "{" +
+                            "System.out.println(\"{Hello {World!}}\");" +
+                            "}" +
+                            "}"),
+                    out
+            );
+            out.close();
+        } catch (FormatterException e) {
+            fail("");
+        }
+    }
 }
