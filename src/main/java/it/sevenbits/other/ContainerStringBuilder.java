@@ -2,10 +2,16 @@ package it.sevenbits.other;
 
 import java.util.Objects;
 
+/**
+ *
+ */
 public class ContainerStringBuilder {
 
     private StringBuilder string;
 
+    /**
+     *
+     */
     public ContainerStringBuilder() {
         this.string = new StringBuilder();
     }
@@ -14,19 +20,26 @@ public class ContainerStringBuilder {
         return string;
     }
 
-    public void setString(StringBuilder string) {
+    public void setString(final StringBuilder string) {
         this.string = string;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ContainerStringBuilder that = (ContainerStringBuilder) o;
         return Objects.equals(string, that.string);
     }
 
-    public void append(char c){
+    /**
+     * @param c append char to StringBuilder
+     */
+    public void append(final char c) {
         string.append(c);
     }
 

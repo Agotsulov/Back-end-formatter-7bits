@@ -3,9 +3,12 @@ package it.sevenbits.formatters.state.lexers.factories;
 import it.sevenbits.formatters.state.lexers.Lexer;
 import it.sevenbits.formatters.state.lexers.LexerException;
 import it.sevenbits.formatters.state.lexers.StateLexer;
-import it.sevenbits.formatters.state.sm.factories.LexerStateEngineFactory;
+import it.sevenbits.formatters.state.state.factories.LexerStateEngineFactory;
 import it.sevenbits.io.Reader;
 
+/**
+ *
+ */
 public class StateLexerFactory implements LexerFactory {
 
     @Override

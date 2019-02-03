@@ -1,10 +1,10 @@
 package it.sevenbits.formatters;
 
 import it.sevenbits.core.FormatterException;
-import it.sevenbits.formatters.state.formatsettings.SimpleLexerSettings;
+import it.sevenbits.formatters.state.formatsettings.SimpleSettings;
 import it.sevenbits.formatters.state.StateLexerFormatter;
 import it.sevenbits.formatters.state.lexers.factories.StateLexerFactory;
-import it.sevenbits.formatters.state.sm.factories.FormatterStateEngineFactory;
+import it.sevenbits.formatters.state.state.factories.FormatterStateEngineFactory;
 import it.sevenbits.io.Writer;
 import it.sevenbits.io.streams.PrintStreamWriter;
 import it.sevenbits.io.string.StringBuilderWriter;
@@ -22,7 +22,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(new StringReader("aaaaa;;;babaf;b;faba;f"), out);
         } catch (FormatterException e) {
             fail("");
@@ -42,7 +42,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(new StringReader("{{{{a;}}}}"), out);
         } catch (FormatterException e) {
             fail("");
@@ -64,7 +64,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("aaa { bbbb; ccc;}"),
                     out
@@ -80,7 +80,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("aaa { bbbb; ccc;}"),
                     out
@@ -97,7 +97,7 @@ public class StateLexerFormatterTest {
         try {
             Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("class HelloWorld {" +
                             "public static void main(String[] args) {" +
@@ -121,7 +121,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("class HelloWorld {\n" +
                             "public static void main(String[] args) {" +
@@ -141,7 +141,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("class HelloWorld {\n" +
                             "public static void main(String[] args) {" +
@@ -161,7 +161,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("\"class HelloWorld {\n" +
                             "public static void main(String[] args) {" +
@@ -181,7 +181,7 @@ public class StateLexerFormatterTest {
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
-                    new FormatterStateEngineFactory(new SimpleLexerSettings("settings/lexer/containers.json"))
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
                     new StringReader("class HelloWorld {\n" +
                             "//public static void main(String[] args) {}}}{}}\n" +

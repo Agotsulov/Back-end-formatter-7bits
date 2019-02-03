@@ -1,9 +1,14 @@
-package it.sevenbits.formatters.state.sm;
+package it.sevenbits.formatters.state.state.engines;
 
-import it.sevenbits.formatters.state.handlers.Handler;
+import it.sevenbits.formatters.state.state.Pair;
+import it.sevenbits.formatters.state.state.State;
+import it.sevenbits.formatters.state.state.StateMap;
 
 import java.util.Map;
 
+/**
+ * @param <T> type
+ */
 public class SimpleStateEngine<T> implements StateEngine<T> {
 
     private Map<Pair<State, String>, T> commands;
@@ -12,6 +17,10 @@ public class SimpleStateEngine<T> implements StateEngine<T> {
 
     private StateMap stateMap;
 
+    /**
+     * @param stateMap stateMap
+     * @param commands commands
+     */
     public SimpleStateEngine(final StateMap stateMap, final Map<Pair<State, String>, T> commands) {
         this.commands = commands;
         this.stateMap = stateMap;

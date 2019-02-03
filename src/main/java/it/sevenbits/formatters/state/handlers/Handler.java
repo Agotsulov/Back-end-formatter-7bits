@@ -1,7 +1,6 @@
 package it.sevenbits.formatters.state.handlers;
 
-import it.sevenbits.formatters.state.formatsettings.LexerSettings;
-import it.sevenbits.formatters.state.tokens.Token;
+import it.sevenbits.formatters.state.formatsettings.Settings;
 
 /**
  *
@@ -10,13 +9,14 @@ public interface Handler {
 
     /**
      * In this method you can get containers and other handles
-     * @param settings Current LexerSettings
+     * @param settings Current Settings
      * @throws HandlerException Something has gone wrong
      */
-    void start(LexerSettings settings) throws HandlerException;
+    void start(Settings settings) throws HandlerException;
 
     /**
      * Call if validate true
+     * @param lexeme String
      * @return character formatting result
      * @throws HandlerException Something has gone wrong
      */

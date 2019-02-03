@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import it.sevenbits.formatters.state.containers.Container;
-import it.sevenbits.formatters.state.handlers.Handler;
 import it.sevenbits.other.ContainerJSON;
 
 import java.io.File;
@@ -13,14 +12,13 @@ import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  *
  */
-public class SimpleLexerSettings implements LexerSettings {
+public class SimpleSettings implements Settings {
 
     private Map<String, Container> containers = null;
 
@@ -29,7 +27,7 @@ public class SimpleLexerSettings implements LexerSettings {
     /**
      * @param containersFile path to json file
      */
-    public SimpleLexerSettings(final String containersFile) {
+    public SimpleSettings(final String containersFile) {
         this.containersFile = containersFile;
     }
 
@@ -66,7 +64,7 @@ public class SimpleLexerSettings implements LexerSettings {
                 container.setFile(d.getFile());
                 result.put(d.getName(), container);
             }
-        }catch (FileNotFoundException
+        } catch (FileNotFoundException
                 | InstantiationException
                 | InvocationTargetException
                 | IllegalAccessException

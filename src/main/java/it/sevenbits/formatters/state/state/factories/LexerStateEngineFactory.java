@@ -1,15 +1,23 @@
-package it.sevenbits.formatters.state.sm.factories;
+package it.sevenbits.formatters.state.state.factories;
 
-import it.sevenbits.formatters.state.sm.*;
-import it.sevenbits.formatters.state.sm.cmd.*;
+import it.sevenbits.formatters.state.state.*;
+import it.sevenbits.formatters.state.state.commands.*;
+import it.sevenbits.formatters.state.state.engines.SimpleStateEngine;
+import it.sevenbits.formatters.state.state.engines.StateEngine;
 import it.sevenbits.formatters.state.tokens.*;
 import it.sevenbits.other.ContainerStringBuilder;
-
+//Как выключить в IDEA то что она собирает импорты в * ?
 import java.util.HashMap;
 import java.util.Map;
 
-public class LexerStateEngineFactory implements StateEngineFactory<Command>{
+/**
+ *
+ */
+public class LexerStateEngineFactory implements StateEngineFactory<Command> {
 
+    /**
+     * @return StateMap
+     */
     public StateMap getStateMap() {
         Map<Pair<State, String>, State> states = new HashMap<>();
 
@@ -69,7 +77,6 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
 
 
         ContainerStringBuilder cs = new ContainerStringBuilder();
-        ContainerStringBuilder comment = new ContainerStringBuilder();
         ContainerStringBuilder forSpaces = new ContainerStringBuilder();
 
         commands.put(new Pair<>(defaultState, ""), new AppendChar(cs));
@@ -98,7 +105,7 @@ public class LexerStateEngineFactory implements StateEngineFactory<Command>{
 
         commands.put(new Pair<>(defaultState, "/"), new AppendCharPrintAndReset(cs, forSpaces));
         commands.put(new Pair<>(preCommentState, "/"), new AppendChar(cs));
-        commands.put(new Pair<>(oneLineCommentState, "\n"),  new AppendCharWithToken(cs, new UniversalToken("Comment","")));
+        commands.put(new Pair<>(oneLineCommentState, "\n"), new AppendCharWithToken(cs, new UniversalToken("Comment", "")));
         commands.put(new Pair<>(oneLineCommentState, ""), new AppendChar(cs));
 
         commands.put(new Pair<>(preCommentState, ""),  new AppendChar(cs));

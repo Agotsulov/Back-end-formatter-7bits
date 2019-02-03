@@ -6,36 +6,24 @@ import it.sevenbits.formatters.state.handlers.HandlerException;
 import it.sevenbits.formatters.state.lexers.Lexer;
 import it.sevenbits.formatters.state.lexers.factories.LexerFactory;
 import it.sevenbits.formatters.state.lexers.factories.LexerFactoryException;
-import it.sevenbits.formatters.state.sm.factories.StateEngineFactory;
-import it.sevenbits.formatters.state.sm.factories.StateEngineFactoryException;
+import it.sevenbits.formatters.state.state.factories.StateEngineFactory;
+import it.sevenbits.formatters.state.state.factories.StateEngineFactoryException;
 import it.sevenbits.formatters.state.tokens.Token;
 import it.sevenbits.formatters.state.handlers.Handler;
-import it.sevenbits.formatters.state.sm.StateEngine;
+import it.sevenbits.formatters.state.state.engines.StateEngine;
 import it.sevenbits.io.Reader;
 import it.sevenbits.io.Writer;
 import it.sevenbits.io.WriterException;
 import it.sevenbits.other.IteratorException;
 
-import java.util.ArrayList;
-import java.util.List;
+//TODO: Добавить обработку многострочных комментариев
+//TODO: Вынести репозитории переходов и команд (конфигурацию автомата) в файл с настройками
 
+
+//Вот была бы программа которая сама исправляет ощибки checkstyle по растановики пробелов и т.п...
+//ААААааа мы ее и писали... Надеюсь ее не надо пользоваться потом.
 /**
- *Доделываем свой maven проект, проект должен корректно собираться и запускаться через java -jar
- * Доделываем интерфейсы
- * Доделываем тесты
- * Доделываем лексер
- * Не забываем про SOLID и замечания
- * Доделываем автоматы
- * Обязательное задание:
- * Lexer-автомат
- * Formatter-автомат
- * Добавить обработку строковых литералов
- * Добавить обработку однострочных комментариев
- * Сделать покрытие тестами по проекту не менее 90%
  *
- * Дополнительное (необязательное) задание за бонусные баллы:
- * Добавить обработку многострочных комментариев
- * Вынести репозитории переходов и команд (конфигурацию автомата) в файл с настройками
  */
 public class StateLexerFormatter implements Formatter {
 
@@ -61,7 +49,7 @@ public class StateLexerFormatter implements Formatter {
 
         try {
             StateEngine<Handler> stateEngine = stateEngineFactory.getStateEngine();
-            //StateEngine<Token> lexer = null;
+
             Lexer lexer = lexerFactory.createLexer(reader);
 
             while (lexer.hasNext()) {

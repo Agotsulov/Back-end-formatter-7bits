@@ -1,11 +1,19 @@
 package it.sevenbits.other;
 
-public class ContainerJSON{
+/**
+ *
+ */
+public class ContainerJSON {
 
     private String name;
     private String path;
     private String file;
 
+    /**
+     * @param name String
+     * @param path String
+     * @param file String
+     */
     ContainerJSON(final String name, final String path, final String file) {
         this.name = name;
         this.path = path;

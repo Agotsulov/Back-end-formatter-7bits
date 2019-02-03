@@ -1,19 +1,21 @@
 package it.sevenbits.formatters.state.handlers;
 
-import it.sevenbits.formatters.state.formatsettings.LexerSettings;
+import it.sevenbits.formatters.state.formatsettings.Settings;
 
-public class Skip implements Handler{
+/**
+ *
+ */
+public class Skip implements Handler {
 
-    //Да. Это тут не нужно.
+    //Да. Эти методы тут не нужны. TODO:Переделать интерфейс Handler
 
     @Override
-    public void start(LexerSettings settings) throws HandlerException {
+    public void start(final Settings settings) {
 
     }
 
     @Override
-    public String handle(String lexeme) throws HandlerException {
-
+    public String handle(final String lexeme) {
         return "";
     }
 }

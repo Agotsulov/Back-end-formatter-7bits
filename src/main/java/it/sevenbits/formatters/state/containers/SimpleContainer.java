@@ -50,6 +50,10 @@ public class SimpleContainer extends AContainer {
         return indentLevel;
     }
 
+
+    /**
+     * @param indentLevel count repeat indentString
+     */
     public void setIndentLevel(final int indentLevel) {
         this.indentLevel = indentLevel;
         currentIndentString += StringUtils.repeat(getIndentString(), getIndentLevel());

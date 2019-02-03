@@ -1,8 +1,8 @@
 package it.sevenbits.formatters.state.lexers;
 
-import it.sevenbits.formatters.state.sm.StateEngine;
-import it.sevenbits.formatters.state.sm.cmd.Command;
-import it.sevenbits.formatters.state.tokens.*;
+import it.sevenbits.formatters.state.state.engines.StateEngine;
+import it.sevenbits.formatters.state.state.commands.Command;
+import it.sevenbits.formatters.state.tokens.Token;
 import it.sevenbits.io.Reader;
 import it.sevenbits.io.ReaderException;
 
@@ -21,7 +21,8 @@ public class StateLexer implements Lexer {
     private Reader reader;
 
     /**
-     * @param reader reader
+     * @param reader Reader
+     * @param stateEngine StateEngine<Command>
      * @throws LexerException Something gone wrong
      */
     public StateLexer(final Reader reader, final StateEngine<Command> stateEngine) throws LexerException {
@@ -51,7 +52,12 @@ public class StateLexer implements Lexer {
         return currentChar;
     }
 
-    public boolean hasNextChar() { return reader.hasNext();}
+    /**
+     * @return true if reader has next char
+     */
+    public boolean hasNextChar() {
+        return reader.hasNext();
+    }
 
     @Override
     public Token next() {

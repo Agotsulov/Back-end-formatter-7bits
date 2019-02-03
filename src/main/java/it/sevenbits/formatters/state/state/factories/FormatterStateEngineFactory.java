@@ -1,23 +1,34 @@
-package it.sevenbits.formatters.state.sm.factories;
+package it.sevenbits.formatters.state.state.factories;
 
 import it.sevenbits.formatters.state.containers.Container;
 import it.sevenbits.formatters.state.containers.ContainerException;
-import it.sevenbits.formatters.state.formatsettings.LexerSettings;
+import it.sevenbits.formatters.state.formatsettings.Settings;
 import it.sevenbits.formatters.state.formatsettings.LexerSettingsException;
 import it.sevenbits.formatters.state.handlers.*;
-import it.sevenbits.formatters.state.sm.*;
+import it.sevenbits.formatters.state.state.*;
+import it.sevenbits.formatters.state.state.engines.SimpleStateEngine;
+import it.sevenbits.formatters.state.state.engines.StateEngine;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public class FormatterStateEngineFactory implements StateEngineFactory<Handler> {
 
-    private LexerSettings lexerSettings;
+    private Settings settings;
 
-    public FormatterStateEngineFactory(LexerSettings lexerSettings) {
-        this.lexerSettings = lexerSettings;
+    /**
+     * @param settings Settings
+     */
+    public FormatterStateEngineFactory(final Settings settings) {
+        this.settings = settings;
     }
 
+    /**
+     * @return StateMap
+     */
     public StateMap getStateMap() {
         Map<Pair<State, String>, State> states = new HashMap<>();
 
@@ -76,14 +87,14 @@ public class FormatterStateEngineFactory implements StateEngineFactory<Handler> 
 
         for (Handler h: commands.values()) {
             try {
-                h.start(lexerSettings);
+                h.start(settings);
             } catch (HandlerException e) {
                 throw new StateEngineFactoryException();
             }
         }
 
         try {
-            for (Container container : lexerSettings.getContainers().values()) {
+            for (Container container : settings.getContainers().values()) {
                 container.load();
             }
         } catch (LexerSettingsException |
