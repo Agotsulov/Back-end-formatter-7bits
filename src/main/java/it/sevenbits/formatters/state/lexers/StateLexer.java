@@ -20,6 +20,8 @@ public class StateLexer implements Lexer {
     private char currentChar;
     private Reader reader;
 
+    //Lexer как отделный класс тут вообще не нужен. Проще обе State-машины в форматире вызвывать и обробатывать.
+
     /**
      * @param reader Reader
      * @param stateEngine StateEngine<Command>

@@ -1,5 +1,6 @@
 package it.sevenbits.formatters.state;
 
+import com.google.gson.Gson;
 import it.sevenbits.core.Formatter;
 import it.sevenbits.core.FormatterException;
 import it.sevenbits.formatters.state.handlers.HandlerException;
@@ -49,7 +50,7 @@ public class StateLexerFormatter implements Formatter {
 
         try {
             StateEngine<Handler> stateEngine = stateEngineFactory.getStateEngine();
-
+            
             Lexer lexer = lexerFactory.createLexer(reader);
 
             while (lexer.hasNext()) {

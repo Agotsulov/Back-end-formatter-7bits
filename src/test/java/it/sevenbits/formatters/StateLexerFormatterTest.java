@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 public class StateLexerFormatterTest {
 
     @Test
-    public void testSimpleLexer() {
+    public void testSemicolons() {
         StringBuilder actual = new StringBuilder();
         try {
             Writer out = new StringBuilderWriter(actual);
@@ -37,7 +37,7 @@ public class StateLexerFormatterTest {
 
 
     @Test
-    public void testSimpleLexer2() {
+    public void testBraces() {
         StringBuilder actual = new StringBuilder();
         try {
             Writer out = new StringBuilderWriter(actual);
@@ -59,7 +59,7 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void first(){
+    public void testDefaultExample(){
         StringBuilder actual = new StringBuilder();
         try {
             Writer out = new StringBuilderWriter(actual);
@@ -76,7 +76,7 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void firstInConsole(){
+    public void testDefaultExampleConsole(){
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
@@ -92,7 +92,7 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void firstHelloWorld(){
+    public void testHelloWorld(){
         StringBuilder actual = new StringBuilder();
         try {
             Writer out = new StringBuilderWriter(actual);
@@ -117,7 +117,7 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void firstHelloWorldConsole(){
+    public void testHelloWorldConsole(){
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
@@ -137,7 +137,32 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void firstHelloWorldConsol2e(){
+    public void testStringLiteral(){
+        StringBuilder actual = new StringBuilder();
+        try {
+            Writer out = new StringBuilderWriter(actual);
+            new StateLexerFormatter(new StateLexerFactory(),
+                    new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
+            ).format(
+                    new StringReader("class HelloWorld {\n" +
+                            "public static void main(String[] args) {" +
+                            "System.out.println(\"{Hello {World!}}\");" +
+                            "}" +
+                            "}"),
+                    out
+            );
+        } catch (FormatterException e) {
+            fail("");
+        }
+        assertEquals("class HelloWorld {\n" +
+                "    public static void main(String[] args) {\n" +
+                "        System.out.println(\"{Hello {World!}}\");\n" +
+                "    }\n" +
+                "}", actual.toString());
+    }
+
+    @Test
+    public void testStringLiteralConsole(){
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
@@ -157,27 +182,34 @@ public class StateLexerFormatterTest {
     }
 
     @Test
-    public void firstHelloWorldConsole3(){
+    public void testComments(){
+        StringBuilder actual = new StringBuilder();
         try {
-            PrintStreamWriter out = new PrintStreamWriter(System.out);
+            Writer out = new StringBuilderWriter(actual);
             new StateLexerFormatter(new StateLexerFactory(),
                     new FormatterStateEngineFactory(new SimpleSettings("settings/lexer/containers.json"))
             ).format(
-                    new StringReader("\"class HelloWorld {\n" +
-                            "public static void main(String[] args) {" +
+                    new StringReader("class HelloWorld {\n" +
+                            "//public static void main(String[] args) {}}}{}}\n" +
+                            "{" +
                             "System.out.println(\"{Hello {World!}}\");" +
                             "}" +
-                            "}\""),
+                            "}"),
                     out
             );
-            out.close();
         } catch (FormatterException e) {
             fail("");
         }
+        assertEquals("class HelloWorld {\n" +
+                "    //public static void main(String[] args) {}}}{}}\n" +
+                "    {\n" +
+                "        System.out.println(\"{Hello {World!}}\");\n" +
+                "    }\n" +
+                "}", actual.toString());
     }
 
     @Test
-    public void firstHelloWorldConsoleComments(){
+    public void firstCommentsConsole(){
         try {
             PrintStreamWriter out = new PrintStreamWriter(System.out);
             new StateLexerFormatter(new StateLexerFactory(),
